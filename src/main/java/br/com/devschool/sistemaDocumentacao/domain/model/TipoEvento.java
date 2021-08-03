@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "tipoEventos")
-public class TipoEvento {private String nome;
-    private boolean situacao;
-    private int ordem;
+@Table(name = "tipo_eventos")
+public class TipoEvento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
+    private Boolean situacao;
+
     @OneToMany(mappedBy = "tipoEvento")
     private List<Evento> eventos;
 
@@ -28,14 +29,6 @@ public class TipoEvento {private String nome;
 
     public void setSituacao(boolean situacao) {
         this.situacao = situacao;
-    }
-
-    public int getOrdem() {
-        return ordem;
-    }
-
-    public void setOrdem(int ordem) {
-        this.ordem = ordem;
     }
 
     public Long getId() {

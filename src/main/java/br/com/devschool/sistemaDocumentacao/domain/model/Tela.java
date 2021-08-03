@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "telas")
 public class Tela {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +15,10 @@ public class Tela {
     private LocalDate dataCadastro;
     private String nomeTela;
     private String imagem;
-    private boolean situacao;
+    private Boolean situacao;
     @ManyToOne
     private Tela telaPai;
-    private int ordem;
+    private Integer ordem;
     private String urlLog;
     @ManyToOne
     private Versao versaoOrigem;

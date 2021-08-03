@@ -4,19 +4,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "requisicoes")
 public class Requisicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     private Evento evento;
-    private String url_homolog;
-    private String uri_prod;
+    private String urlHomolog;
+    private String uriProd;
     private String descricao;
     @ManyToOne
     private Requisicao requisicaoPai;
     private String camada;
-    private boolean situacao;
+    private Boolean situacao;
     private Integer ordem;
     @OneToMany(mappedBy = "requisicao")
     private List<PropriedadeRequisicao> propriedades;
@@ -39,20 +40,20 @@ public class Requisicao {
         this.evento = evento;
     }
 
-    public String getUrl_homolog() {
-        return url_homolog;
+    public String getUrlHomolog() {
+        return urlHomolog;
     }
 
-    public void setUrl_homolog(String url_homolog) {
-        this.url_homolog = url_homolog;
+    public void setUrlHomolog(String urlHomolog) {
+        this.urlHomolog = urlHomolog;
     }
 
-    public String getUri_prod() {
-        return uri_prod;
+    public String getUriProd() {
+        return uriProd;
     }
 
-    public void setUri_prod(String uri_prod) {
-        this.uri_prod = uri_prod;
+    public void setUriProd(String uriProd) {
+        this.uriProd = uriProd;
     }
 
     public String getDescricao() {
@@ -79,11 +80,11 @@ public class Requisicao {
         this.camada = camada;
     }
 
-    public boolean isSituacao() {
+    public Boolean getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(boolean situacao) {
+    public void setSituacao(Boolean situacao) {
         this.situacao = situacao;
     }
 

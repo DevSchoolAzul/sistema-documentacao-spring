@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "propriedades")
 public class PropriedadeRequisicao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
