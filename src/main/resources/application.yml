@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    Driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sistema-documentacao
+    username: root
+    password: 1234
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+
+
