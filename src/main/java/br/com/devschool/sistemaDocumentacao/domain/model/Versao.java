@@ -2,6 +2,7 @@ package br.com.devschool.sistemaDocumentacao.domain.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "versoes")
@@ -19,6 +20,9 @@ public class Versao {
 
     @ManyToOne
     private Projeto projeto;
+
+    @OneToMany(mappedBy = "versao")
+    private List<Tela> telas;
 
     public Versao() {
     }
