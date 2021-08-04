@@ -20,7 +20,7 @@ public class Projeto {
     private Boolean situacao;
 
     @OneToMany(mappedBy = "projeto")
-    private List<Versao> versoes;
+    private List<br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao> versoes;
 
     public Projeto(String nome, Boolean situacao) {
         this.nome = nome;

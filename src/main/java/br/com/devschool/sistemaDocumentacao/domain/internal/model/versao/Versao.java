@@ -1,7 +1,10 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.model.versao;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,6 +12,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "versoes")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Versao {
 
     @Id
@@ -27,70 +33,13 @@ public class Versao {
     @OneToMany(mappedBy = "versao")
     private List<Tela> telas;
 
-    public Versao() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getGmud() {
-        return gmud;
-    }
-
-    public void setGmud(String gmud) {
+    public Versao(String gmud, String descricao, Boolean situacao, Integer ordem, String numeroVersao, Projeto project) {
         this.gmud = gmud;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public LocalDate getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(LocalDate dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
-
-    public Boolean getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Boolean situacao) {
+        this.dataLancamento = LocalDate.now();
         this.situacao = situacao;
-    }
-
-    public Integer getOrdem() {
-        return ordem;
-    }
-
-    public void setOrdem(Integer ordem) {
         this.ordem = ordem;
-    }
-
-    public String getNumeroVersao() {
-        return numeroVersao;
-    }
-
-    public void setNumeroVersao(String numeroVersao) {
         this.numeroVersao = numeroVersao;
-    }
-
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
+        this.projeto = project;
     }
 }

@@ -5,7 +5,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.dto.Pr
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.ProjetoService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +24,9 @@ public class ProjetoController {
     private ProjetoService projetoService;
 
     @GetMapping
-    public ResponseEntity<List<Projeto>> getAllProjects() {
-        return ResponseEntity.ok(projetoService.getAllProjects());
+    public ResponseEntity<List<ProjetoDto>> getAllProjects() {
+        List<Projeto> projects = projetoService.getAllProjects();
+        return ResponseEntity.ok(ProjetoDto.convertList(projects));
     }
 
     @GetMapping("/{id}")
