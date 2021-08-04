@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "9288f59a-c941-48cd-bac2-8d07cae0b92f",
+		"name": "Sistema Documentacao",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Projetos",
+			"item": [
+				{
+					"name": "/projetos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"projeto 1\",\r\n    \"situacao\":\"true\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/projetos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projetos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projetos/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projetos/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"teste 2\",\r\n    \"situacao\":\"true\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/projetos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projetos/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Versoes",
+			"item": [
+				{
+					"name": "/versoes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gmud\":\"AHGBASID12232\",\r\n    \"descricao\":\"Testando primeira versao\",\r\n    \"situacao\":\"true\",\r\n    \"ordem\":\"2\",\r\n    \"numeroVersao\":\"V1.0\",\r\n    \"projetoId\":\"2\"\r\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/versoes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/versoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/versoes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/versoes/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/versoes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/versoes/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/versoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/versoes/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/versoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
