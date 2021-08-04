@@ -1,6 +1,6 @@
-package br.com.devschool.sistemaDocumentacao.domain.model.projeto;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto;
 
-import br.com.devschool.sistemaDocumentacao.domain.model.versao.Versao;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
 
 import javax.persistence.*;
 import java.util.List;

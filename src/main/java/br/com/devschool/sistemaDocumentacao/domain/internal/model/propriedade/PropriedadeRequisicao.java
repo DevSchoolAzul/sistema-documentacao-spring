@@ -1,6 +1,6 @@
-package br.com.devschool.sistemaDocumentacao.domain.model.propriedade;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.propriedade;
 
-import br.com.devschool.sistemaDocumentacao.domain.model.requisicao.Requisicao;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 
 import javax.persistence.*;
 
