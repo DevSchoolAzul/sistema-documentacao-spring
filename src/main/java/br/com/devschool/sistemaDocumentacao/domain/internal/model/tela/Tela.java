@@ -13,21 +13,21 @@ public class Tela {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Versao versao;
     private LocalDate dataCadastro;
     private String nomeTela;
     private String imagem;
     private Boolean situacao;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Tela telaPai;
     private Integer ordem;
     private String urlLog;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Versao versaoOrigem;
-    @OneToMany(mappedBy = "tela")
+    @OneToMany(mappedBy = "tela", fetch = FetchType.LAZY)
     private List<Evento> eventos;
-    @OneToMany(mappedBy = "telaPai")
+    @OneToMany(mappedBy = "telaPai", fetch = FetchType.LAZY)
     private List<Tela> telasFilhas;
 
     public Long getId() {
