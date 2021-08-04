@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjetoServiceImpl implements ProjetoService {
@@ -15,29 +16,23 @@ public class ProjetoServiceImpl implements ProjetoService {
     private ProjetoRepository projetoRepository;
 
 
-
     @Override
     public List<Projeto> getAllProjects() {
         return projetoRepository.findAll();
     }
 
     @Override
-    public Projeto getProjectById(Long id) {
-        return null;
+    public Optional<Projeto> getProjectById(Long id) {
+        return projetoRepository.findById(id);
     }
 
     @Override
-    public Projeto createProject(Projeto projeto) {
+    public Projeto save(Projeto projeto) {
         return projetoRepository.save(projeto);
     }
 
     @Override
-    public Projeto updateProject(Long id, Projeto projeto) {
-        return null;
-    }
-
-    @Override
     public void deleteProject(Long id) {
-
+        projetoRepository.deleteById(id);
     }
 }
