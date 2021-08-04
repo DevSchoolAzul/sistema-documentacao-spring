@@ -1,4 +1,7 @@
-package br.com.devschool.sistemaDocumentacao.domain.model;
+package br.com.devschool.sistemaDocumentacao.domain.model.tela;
+
+import br.com.devschool.sistemaDocumentacao.domain.model.evento.Evento;
+import br.com.devschool.sistemaDocumentacao.domain.model.versao.Versao;
 
 import javax.persistence.*;
 import java.time.LocalDate;

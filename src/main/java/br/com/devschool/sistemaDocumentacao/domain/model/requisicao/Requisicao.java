@@ -1,4 +1,7 @@
-package br.com.devschool.sistemaDocumentacao.domain.model;
+package br.com.devschool.sistemaDocumentacao.domain.model.requisicao;
+
+import br.com.devschool.sistemaDocumentacao.domain.model.propriedade.PropriedadeRequisicao;
+import br.com.devschool.sistemaDocumentacao.domain.model.evento.Evento;
 
 import javax.persistence.*;
 import java.util.List;

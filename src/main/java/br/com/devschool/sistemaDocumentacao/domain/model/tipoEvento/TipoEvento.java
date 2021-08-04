@@ -1,4 +1,6 @@
-package br.com.devschool.sistemaDocumentacao.domain.model;
+package br.com.devschool.sistemaDocumentacao.domain.model.tipoEvento;
+
+import br.com.devschool.sistemaDocumentacao.domain.model.evento.Evento;
 
 import javax.persistence.*;
 import java.util.List;

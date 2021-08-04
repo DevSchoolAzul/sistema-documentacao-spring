@@ -1,6 +1,10 @@
-package br.com.devschool.sistemaDocumentacao.domain.model;
+package br.com.devschool.sistemaDocumentacao.domain.model.evento;
 
 
+
+import br.com.devschool.sistemaDocumentacao.domain.model.requisicao.Requisicao;
+import br.com.devschool.sistemaDocumentacao.domain.model.tipoEvento.TipoEvento;
+import br.com.devschool.sistemaDocumentacao.domain.model.tela.Tela;
 
 import javax.persistence.*;
 import java.util.List;
