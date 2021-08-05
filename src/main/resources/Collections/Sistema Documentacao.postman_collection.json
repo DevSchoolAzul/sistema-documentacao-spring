@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "36ee997d-0930-4345-8483-fd86b56a5353",
+		"_postman_id": "a80b2b5b-bc70-4d4c-9aef-62b1074c677c",
 		"name": "Sistema Documentacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -488,6 +488,124 @@
 							"port": "8080",
 							"path": [
 								"telas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requisicao",
+			"item": [
+				{
+					"name": "/requisicoes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/requisicoes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/requisicoes/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/requisicoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/requisicoes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evento\": 1,\n    \"urlHomolog\": \"http://urlHomolog.com\",\n    \"uriProd\": \"http://uriProd.com\",\n    \"descricao\": \"teste de nova requisicao\",\n    \"camada\": \"Camada de teste\",\n    \"situacao\": true,\n    \"ordem\": 1\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/requisicoes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/requisicoes/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evento\": 1,\n    \"urlHomolog\": \"http://Url-alterado.br\",\n    \"uriProd\": \"http://URI-alterado.br\",\n    \"descricao\": \"teste de altarar requisicao\",\n    \"camada\": \"Camada de alteracao\",\n    \"situacao\": false,\n    \"ordem\": 2\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/requisicoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/requisicoes/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/requisicoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes",
 								"1"
 							]
 						}
