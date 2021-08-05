@@ -3,7 +3,6 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.evento.EventoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 
 public class RequisicaoDto {
