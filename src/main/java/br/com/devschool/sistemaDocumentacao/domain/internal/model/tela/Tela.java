@@ -1,14 +1,32 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
-
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "telas")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Tela {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,99 +48,5 @@ public class Tela {
     @OneToMany(mappedBy = "telaPai", fetch = FetchType.LAZY)
     private List<Tela> telasFilhas;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Versao getVersao() {
-        return versao;
-    }
-
-    public void setVersao(Versao versao) {
-        this.versao = versao;
-    }
-
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public String getNomeTela() {
-        return nomeTela;
-    }
-
-    public void setNomeTela(String nomeTela) {
-        this.nomeTela = nomeTela;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-    public boolean isSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(boolean situacao) {
-        this.situacao = situacao;
-    }
-
-    public Tela getTelaPai() {
-        return telaPai;
-    }
-
-    public void setTelaPai(Tela telaPai) {
-        this.telaPai = telaPai;
-    }
-
-    public int getOrdem() {
-        return ordem;
-    }
-
-    public void setOrdem(int ordem) {
-        this.ordem = ordem;
-    }
-
-    public String getUrlLog() {
-        return urlLog;
-    }
-
-    public void setUrlLog(String urlLog) {
-        this.urlLog = urlLog;
-    }
-
-    public Versao getVersaoOrigem() {
-        return versaoOrigem;
-    }
-
-    public void setVersaoOrigem(Versao versaoOrigem) {
-        this.versaoOrigem = versaoOrigem;
-    }
-
-    public List<Evento> getEventos() {
-        return eventos;
-    }
-
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
-    }
-
-    public List<Tela> getTelasFilhas() {
-        return telasFilhas;
-    }
-
-    public void setTelasFilhas(List<Tela> telasFilhas) {
-        this.telasFilhas = telasFilhas;
-    }
 }
