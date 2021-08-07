@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 public class RequisicaoCadastrarForm {
 
@@ -26,9 +27,9 @@ public class RequisicaoCadastrarForm {
 	@NotNull
 	private Integer ordem;
 
-	public Requisicao toRequisicao(EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
+	public Requisicao toRequisicao(EventoService eventoService, RequisicaoServiceImpl requisicaoService) throws NoContentException {
 		Requisicao requisicao = new Requisicao();
-		requisicao.setEvento(eventoService.buscar(evento));
+		requisicao.setEvento(eventoService.getEventById(evento));
 		requisicao.setUrlHomolog(urlHomolog);
 		requisicao.setUriProd(uriProd);
 		requisicao.setDescricao(descricao);

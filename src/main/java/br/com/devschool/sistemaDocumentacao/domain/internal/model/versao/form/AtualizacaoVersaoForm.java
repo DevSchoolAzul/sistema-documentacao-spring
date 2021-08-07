@@ -25,7 +25,7 @@ public class AtualizacaoVersaoForm {
     @NotNull @NotEmpty
     private String numeroVersao;
 
-    public Versao convertFormToEntity(Versao versao) {
+    public Versao updateEntity(Versao versao) {
         versao.setGmud(this.gmud);
         versao.setDescricao(this.descricao);
         versao.setSituacao(this.situacao);

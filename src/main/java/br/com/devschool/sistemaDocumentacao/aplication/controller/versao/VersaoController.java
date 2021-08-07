@@ -25,7 +25,7 @@ public class VersaoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VersaoDto>> getAllVersions() {
+    public ResponseEntity<List<VersaoDto>> getAllVersions() throws NoContentException {
         List<VersaoDto> versionsDto = VersaoDto.convertList(versaoService.getAllVersions());
         return ResponseEntity.ok(versionsDto);
     }

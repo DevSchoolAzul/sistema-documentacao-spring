@@ -2,6 +2,7 @@ package br.com.devschool.sistemaDocumentacao.aplication.controller.requisicao;
 
 import java.util.List;
 
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class RequisicaoController {
 	//}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<RequisicaoDto> alterar(@PathVariable Long id, @RequestBody RequisicaoAlterarForm requisicaoForm) {
+	public ResponseEntity<RequisicaoDto> alterar(@PathVariable Long id, @RequestBody RequisicaoAlterarForm requisicaoForm) throws NoContentException {
 		Requisicao requisicao = requisicaoService.alterar(id, requisicaoForm);
 		return ResponseEntity.ok(new RequisicaoDto(requisicao));
 	}

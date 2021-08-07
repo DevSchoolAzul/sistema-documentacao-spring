@@ -3,6 +3,7 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.fo
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 public class RequisicaoAlterarForm {
 
@@ -15,9 +16,9 @@ public class RequisicaoAlterarForm {
 	private Boolean situacao;
 	private Integer ordem;
 
-	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
+	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoServiceImpl requisicaoService) throws NoContentException {
 		if (evento != null)
-			requisicao.setEvento(eventoService.buscar(evento));
+			requisicao.setEvento(eventoService.getEventById(evento));
 		if (!urlHomolog.isBlank())
 			requisicao.setUrlHomolog(urlHomolog);
 		if (!uriProd.isBlank())

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface VersaoService {
 
-    List<Versao> getAllVersions();
+    List<Versao> getAllVersions() throws NoContentException;
 
     Versao getVersionById(Long id) throws NoContentException;
 

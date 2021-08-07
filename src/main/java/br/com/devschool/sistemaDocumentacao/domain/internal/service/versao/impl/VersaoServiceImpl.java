@@ -28,8 +28,14 @@ public class VersaoServiceImpl implements VersaoService {
 
 
     @Override
-    public List<Versao> getAllVersions() {
-        return versaoRepository.findAll();
+    public List<Versao> getAllVersions() throws NoContentException {
+        List<Versao> versions = versaoRepository.findAll();
+
+        if (versions.isEmpty()) {
+            throw new NoContentException("");
+        }
+
+        return versions;
     }
 
     @Override
@@ -56,7 +62,7 @@ public class VersaoServiceImpl implements VersaoService {
         if(optionalVersion.isPresent()) {
             throw new NoContentException("Nenhuma versão cadastrada com ID " + id);
         }
-        Versao version = form.convertFormToEntity(optionalVersion.get());
+        Versao version = form.updateEntity(optionalVersion.get());
 
         return versaoRepository.save(version);
     }

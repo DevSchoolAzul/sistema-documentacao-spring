@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 		throw new RuntimeException("Requisicao não encontrada");
 	}
 	
-	public Requisicao alterar(Long id, RequisicaoAlterarForm requisicaoForm) {
+	public Requisicao alterar(Long id, RequisicaoAlterarForm requisicaoForm) throws NoContentException {
 		Requisicao requisicao = this.buscar(id);
 		requisicaoForm.atualizar(requisicao, eventoService, this);
 		requisicaoRepository.save(requisicao);
