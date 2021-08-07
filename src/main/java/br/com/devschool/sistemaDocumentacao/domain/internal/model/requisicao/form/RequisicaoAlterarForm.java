@@ -24,7 +24,7 @@ public class RequisicaoAlterarForm {
 
 	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoService requisicaoService) throws NoContentException {
 		if (evento != null)
-			requisicao.setEvento(eventoService.buscar(evento));
+			requisicao.setEvento(eventoService.getEventById(evento));
 		if (!urlHomolog.isBlank())
 			requisicao.setUrlHomolog(urlHomolog);
 		if (!uriProd.isBlank())

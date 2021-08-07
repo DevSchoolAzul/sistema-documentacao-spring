@@ -35,7 +35,7 @@ public class RequisicaoCadastrarForm {
 
 	public Requisicao toRequisicao(EventoService eventoService, RequisicaoService requisicaoService) throws NoContentException {
 		return Requisicao.builder()
-				.evento(eventoService.buscar(evento))
+				.evento(eventoService.getEventById(evento))
 				.urlHomolog(urlHomolog)
 				.uriProd(uriProd)
 				.descricao(descricao)
