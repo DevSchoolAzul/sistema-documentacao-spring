@@ -3,6 +3,7 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dt
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class RequisicaoAlterarForm {
 	private Boolean situacao;
 	private Integer ordem;
 
-	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoService requisicaoService) {
+	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoService requisicaoService) throws NoContentException {
 		if (evento != null)
 			requisicao.setEvento(eventoService.buscar(evento));
 		if (!urlHomolog.isBlank())
