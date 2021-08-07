@@ -5,9 +5,15 @@ import javax.validation.constraints.NotNull;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Builder
+@Getter
+@Setter
 public class RequisicaoCadastrarForm {
 
 	@NotNull
@@ -27,81 +33,17 @@ public class RequisicaoCadastrarForm {
 	@NotNull
 	private Integer ordem;
 
-	public Requisicao toRequisicao(EventoService eventoService, RequisicaoServiceImpl requisicaoService) throws NoContentException {
-		Requisicao requisicao = new Requisicao();
-		requisicao.setEvento(eventoService.getEventById(evento));
-		requisicao.setUrlHomolog(urlHomolog);
-		requisicao.setUriProd(uriProd);
-		requisicao.setDescricao(descricao);
-		if (requisicaoPai != null) requisicao.setRequisicaoPai(requisicaoService.buscar(requisicaoPai));			
-		requisicao.setCamada(camada);
-		requisicao.setSituacao(situacao);
-		requisicao.setOrdem(ordem);
-		return requisicao;
-	}
-
-	public Long getEvento() {
-		return evento;
-	}
-
-	public void setEvento(Long evento) {
-		this.evento = evento;
-	}
-
-	public String getUrlHomolog() {
-		return urlHomolog;
-	}
-
-	public void setUrlHomolog(String urlHomolog) {
-		this.urlHomolog = urlHomolog;
-	}
-
-	public String getUriProd() {
-		return uriProd;
-	}
-
-	public void setUriProd(String uriProd) {
-		this.uriProd = uriProd;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Long getRequisicaoPai() {
-		return requisicaoPai;
-	}
-
-	public void setRequisicaoPai(Long requisicaoPai) {
-		this.requisicaoPai = requisicaoPai;
-	}
-
-	public String getCamada() {
-		return camada;
-	}
-
-	public void setCamada(String camada) {
-		this.camada = camada;
-	}
-
-	public Boolean getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(Boolean situacao) {
-		this.situacao = situacao;
-	}
-
-	public Integer getOrdem() {
-		return ordem;
-	}
-
-	public void setOrdem(Integer ordem) {
-		this.ordem = ordem;
+	public Requisicao toRequisicao(EventoService eventoService, RequisicaoService requisicaoService) throws NoContentException {
+		return Requisicao.builder()
+				.evento(eventoService.buscar(evento))
+				.urlHomolog(urlHomolog)
+				.uriProd(uriProd)
+				.descricao(descricao)
+				.requisicaoPai((requisicaoPai != null) ? requisicaoService.buscar(requisicaoPai) : null)
+				.camada(camada)
+				.situacao(situacao)
+				.ordem(ordem)
+				.build();
 	}
 
 }

@@ -1,15 +1,34 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.propriedade.PropriedadeRequisicao;
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
-
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.propriedade.PropriedadeRequisicao;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "requisicoes")
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Requisicao {
-    @Id
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
@@ -22,96 +41,9 @@ public class Requisicao {
     private String camada;
     private Boolean situacao;
     private Integer ordem;
-    @OneToMany(mappedBy = "requisicao")
+    @OneToMany(mappedBy = "requisicao", fetch = FetchType.LAZY)
     private List<PropriedadeRequisicao> propriedades;
-    @OneToMany(mappedBy = "requisicaoPai")
+    @OneToMany(mappedBy = "requisicaoPai", fetch = FetchType.LAZY)
     private List<Requisicao> requisicao;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
-    }
-
-    public String getUrlHomolog() {
-        return urlHomolog;
-    }
-
-    public void setUrlHomolog(String urlHomolog) {
-        this.urlHomolog = urlHomolog;
-    }
-
-    public String getUriProd() {
-        return uriProd;
-    }
-
-    public void setUriProd(String uriProd) {
-        this.uriProd = uriProd;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Requisicao getRequisicaoPai() {
-        return requisicaoPai;
-    }
-
-    public void setRequisicaoPai(Requisicao requisicaoPai) {
-        this.requisicaoPai = requisicaoPai;
-    }
-
-    public String getCamada() {
-        return camada;
-    }
-
-    public void setCamada(String camada) {
-        this.camada = camada;
-    }
-
-    public Boolean getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
-    }
-
-    public Integer getOrdem() {
-        return ordem;
-    }
-
-    public void setOrdem(Integer ordem) {
-        this.ordem = ordem;
-    }
-
-    public List<PropriedadeRequisicao> getPropriedades() {
-        return propriedades;
-    }
-
-    public void setPropriedades(List<PropriedadeRequisicao> propriedades) {
-        this.propriedades = propriedades;
-    }
-
-    public List<Requisicao> getRequisicao() {
-        return requisicao;
-    }
-
-    public void setRequisicao(List<Requisicao> requisicao) {
-        this.requisicao = requisicao;
-    }
 }
