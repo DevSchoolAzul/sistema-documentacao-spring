@@ -38,7 +38,6 @@ public class TelaFormCadastrarDto {
 		Tela tela = Tela.builder()
 				.versao(versaoRepository.findById(versao).get())
 				.telaPai((telaPai != null)? telaRepository.findById(telaPai).get() : null)
-				.telaPai(null)
 				.nomeTela(nomeTela)
 				.ordem(ordem)
 				.dataCadastro(LocalDate.parse(dataCadastro))
