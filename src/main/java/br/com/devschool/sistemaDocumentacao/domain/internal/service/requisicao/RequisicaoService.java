@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoAlterarForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto.RequisicaoAlterarForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.requisicao.RequisicaoRepository;
 

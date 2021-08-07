@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoAlterarForm;
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoCadastrarForm;
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto.RequisicaoAlterarForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto.RequisicaoCadastrarForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto.RequisicaoDto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
 
 @RestController
@@ -27,8 +28,8 @@ public class RequisicaoController {
 	
 	@Autowired
 	private RequisicaoService requisicaoService;
-	//@Autowired
-	//private EventoService eventoService;
+//	@Autowired
+//	private EventoService eventoService;
 	
 	@GetMapping
 	public ResponseEntity<List<RequisicaoDto>> listar() {
@@ -42,12 +43,12 @@ public class RequisicaoController {
 		return ResponseEntity.ok(new RequisicaoDto(requisicao));
 	}
 	
-	//@PostMapping
-	//public ResponseEntity<RequisicaoDto> novo(@RequestBody @Valid RequisicaoCadastrarForm requisicaoForm) {
-	//	Requisicao requisicao = requisicaoService.cadastrar(requisicaoForm.toRequisicao(eventoService, requisicaoService));
-	//	return ResponseEntity.ok(new RequisicaoDto(requisicao));
-	//
-	//}
+//	@PostMapping
+//	public ResponseEntity<RequisicaoDto> novo(@RequestBody @Valid RequisicaoCadastrarForm requisicaoForm) {
+//		Requisicao requisicao = requisicaoService.cadastrar(requisicaoForm.toRequisicao(eventoService, requisicaoService));
+//		return ResponseEntity.ok(new RequisicaoDto(requisicao));
+//	
+//	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<RequisicaoDto> alterar(@PathVariable Long id, @RequestBody RequisicaoAlterarForm requisicaoForm) {
