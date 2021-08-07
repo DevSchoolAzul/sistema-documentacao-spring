@@ -1,8 +1,8 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.tipoEvento.impl;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.AtualizacaoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.TipoEvento;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.AtualizacaoTipoEventoForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.TipoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.tipoEvento.TipoEventoService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
@@ -54,7 +54,7 @@ public class TipoEventoServiceImpl implements TipoEventoService {
         if(optionalEventType.isEmpty()) {
             throw new NoContentException("");
         }
-        TipoEvento eventType = form.updateEntity(optionalEventType);
+        TipoEvento eventType = form.updateEntity(optionalEventType.get());
         return tipoEventoRepository.save(eventType);
     }
 

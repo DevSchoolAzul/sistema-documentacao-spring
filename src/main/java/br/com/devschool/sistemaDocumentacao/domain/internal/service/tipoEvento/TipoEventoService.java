@@ -1,6 +1,8 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.tipoEvento;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.TipoEvento;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.AtualizacaoTipoEventoForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.TipoEventoForm;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 

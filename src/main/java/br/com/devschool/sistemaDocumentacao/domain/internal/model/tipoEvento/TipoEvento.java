@@ -1,12 +1,20 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "tipo_eventos")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TipoEvento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,36 +24,4 @@ public class TipoEvento {
 
     @OneToMany(mappedBy = "tipoEvento")
     private List<Evento> eventos;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public boolean isSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(boolean situacao) {
-        this.situacao = situacao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Evento> getEventos() {
-        return eventos;
-    }
-
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
-    }
 }
