@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoAlterarForm;
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoDto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.form.RequisicaoAlterarForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto.RequisicaoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
 

@@ -1,4 +1,4 @@
-package br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,42 +1,37 @@
-package br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.form;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
 
-public class RequisicaoCadastrarForm {
+public class RequisicaoAlterarForm {
 
-	@NotNull
 	private Long evento;
-	@NotBlank
 	private String urlHomolog;
-	@NotBlank
 	private String uriProd;
-	@NotBlank
 	private String descricao;
-
 	private Long requisicaoPai;
-	@NotBlank
 	private String camada;
-	@NotNull
 	private Boolean situacao;
-	@NotNull
 	private Integer ordem;
 
-	public Requisicao toRequisicao(EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
-		Requisicao requisicao = new Requisicao();
-		requisicao.setEvento(eventoService.buscar(evento));
-		requisicao.setUrlHomolog(urlHomolog);
-		requisicao.setUriProd(uriProd);
-		requisicao.setDescricao(descricao);
-		if (requisicaoPai != null) requisicao.setRequisicaoPai(requisicaoService.buscar(requisicaoPai));			
-		requisicao.setCamada(camada);
-		requisicao.setSituacao(situacao);
-		requisicao.setOrdem(ordem);
-		return requisicao;
+	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
+		if (evento != null)
+			requisicao.setEvento(eventoService.buscar(evento));
+		if (!urlHomolog.isBlank())
+			requisicao.setUrlHomolog(urlHomolog);
+		if (!uriProd.isBlank())
+			requisicao.setUriProd(uriProd);
+		if (!descricao.isBlank())
+			requisicao.setDescricao(descricao);
+		if (requisicaoPai != null)
+			requisicao.setRequisicaoPai(requisicaoService.buscar(requisicaoPai));
+		if (!camada.isBlank())
+			requisicao.setCamada(camada);
+		if (situacao != null)
+			requisicao.setSituacao(situacao);
+		if (ordem != null)
+			requisicao.setOrdem(ordem);
 	}
 
 	public Long getEvento() {
