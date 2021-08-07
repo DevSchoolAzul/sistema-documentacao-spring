@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a80b2b5b-bc70-4d4c-9aef-62b1074c677c",
+		"_postman_id": "2adc11b3-9c8f-480a-928c-246e0f192f4c",
 		"name": "Sistema Documentacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -497,47 +497,28 @@
 			]
 		},
 		{
-			"name": "Requisicao",
+			"name": "Eventos",
 			"item": [
 				{
-					"name": "/requisicoes",
+					"name": "/eventos",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/requisicoes",
+							"raw": "localhost:8080/eventos",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"requisicoes"
+								"eventos"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/requisicoes/{id}",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/requisicoes/1",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"requisicoes",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/requisicoes",
+					"name": "/eventos",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -549,44 +530,53 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"evento\": 1,\n    \"urlHomolog\": \"http://urlHomolog.com\",\n    \"uriProd\": \"http://uriProd.com\",\n    \"descricao\": \"teste de nova requisicao\",\n    \"camada\": \"Camada de teste\",\n    \"situacao\": true,\n    \"ordem\": 1\n}"
+							"raw": "{\r\n    \"situacao\":\"true\",\r\n    \"ordem\":\"2\",\r\n    \"parametros\":\"laranja, maça\",\r\n    \"telaId\":\"2\",\r\n    \"eventTypeId\":\"2\"\r\n}"
 						},
 						"url": {
-							"raw": "localhost:8080/requisicoes",
+							"raw": "localhost:8080/eventos",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"requisicoes"
+								"eventos"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/requisicoes/{id}",
+					"name": "/eventos/{id}",
 					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"evento\": 1,\n    \"urlHomolog\": \"http://Url-alterado.br\",\n    \"uriProd\": \"http://URI-alterado.br\",\n    \"descricao\": \"teste de altarar requisicao\",\n    \"camada\": \"Camada de alteracao\",\n    \"situacao\": false,\n    \"ordem\": 2\n}"
-						},
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "localhost:8080/requisicoes/1",
+							"raw": "localhost:8080/eventos/3",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"requisicoes",
+								"eventos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/eventos/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/eventos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eventos",
 								"1"
 							]
 						}
@@ -594,18 +584,18 @@
 					"response": []
 				},
 				{
-					"name": "/requisicoes/{id}",
+					"name": "/eventos/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/requisicoes/1",
+							"raw": "localhost:8080/eventos/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"requisicoes",
+								"eventos",
 								"1"
 							]
 						}
