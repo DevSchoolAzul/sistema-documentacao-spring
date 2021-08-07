@@ -1,18 +1,23 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
+import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProjetoService {
 
-    List<Projeto> getAllProjects();
+    List<Projeto> getAllProjects() throws NoContentException;
 
-    Optional<Projeto> getProjectById(Long id);
+    Projeto getProjectById(Long id) throws NoContentException;
 
-    Projeto save(Projeto projeto);
+    Projeto createProject(ProjetoForm form);
 
-    void deleteProject(Long id);
+    Projeto updateProjectById(Long id, AtualizacaoProjetoForm form) throws NoContentException;
+
+    void deleteProject(Long id) throws DeleteEntityWithDependentsException, NoContentException;
 
 }

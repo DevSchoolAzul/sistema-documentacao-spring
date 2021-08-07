@@ -2,31 +2,27 @@ package br.com.devschool.sistemaDocumentacao.aplication.controller.requisicao;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoAlterarForm;
-import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoCadastrarForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao.RequisicaoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
 
 @RestController
 @RequestMapping("/requisicoes")
 public class RequisicaoController {
 	
 	@Autowired
-	private RequisicaoService requisicaoService;
+	private RequisicaoServiceImpl requisicaoService;
 	//@Autowired
 	//private EventoService eventoService;
 	

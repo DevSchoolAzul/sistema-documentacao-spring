@@ -1,4 +1,4 @@
-package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form;
 
 import java.time.LocalDate;
 
@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.versao.VersaoRepository;

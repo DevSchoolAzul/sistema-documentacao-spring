@@ -24,11 +24,11 @@ public class ErrorHandler {
 		
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(new ResponseErrorDto(exception.getMessage()));
 	}
-	
+
 	@ExceptionHandler(DeleteEntityWithDependentsException.class)
 	public ResponseEntity<ResponseErrorDto> falhaAoDeletar(DeleteEntityWithDependentsException exception) {
 		
-		return ResponseEntity.status(400).body(new ResponseErrorDto(exception.getMessage()));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseErrorDto(exception.getMessage()));
 	}
 	
 }

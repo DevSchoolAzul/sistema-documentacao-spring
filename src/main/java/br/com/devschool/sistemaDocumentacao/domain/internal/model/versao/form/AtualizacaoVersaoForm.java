@@ -6,17 +6,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AtualizacaoVersaoForm {
-
+    @NotNull @NotEmpty
     private String gmud;
+
     private String descricao;
+    @NotNull @NotEmpty
     private Boolean situacao;
+    @NotNull @NotEmpty
     private Integer ordem;
+    @NotNull @NotEmpty
     private String numeroVersao;
 
     public Versao convertFormToEntity(Versao versao) {

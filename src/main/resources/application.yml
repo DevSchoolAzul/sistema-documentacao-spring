@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   datasource:
     Driver: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/teste

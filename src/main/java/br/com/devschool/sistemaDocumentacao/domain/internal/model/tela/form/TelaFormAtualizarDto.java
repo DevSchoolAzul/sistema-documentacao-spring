@@ -1,9 +1,9 @@
-package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto;
+package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form;
 
 import java.time.LocalDate;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.impl.TelaServiceImpl;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class TelaFormAtualizarDto {
     private String urlLog;
     private LocalDate dataCadastro;
     
-    public void atualizar(Tela tela, TelaService service) throws NoContentException {
+    public void atualizar(Tela tela, TelaServiceImpl service) throws NoContentException {
     	if (telaPai != null && !telaPai.equals(tela.getId())) {
     		if (telaPai.equals(0l)) {
     			tela.setTelaPai(null);

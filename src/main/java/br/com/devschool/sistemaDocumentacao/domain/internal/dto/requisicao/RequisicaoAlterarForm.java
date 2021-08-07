@@ -2,7 +2,7 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.dto.requisicao;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
 
 public class RequisicaoAlterarForm {
 
@@ -15,7 +15,7 @@ public class RequisicaoAlterarForm {
 	private Boolean situacao;
 	private Integer ordem;
 
-	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoService requisicaoService) {
+	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
 		if (evento != null)
 			requisicao.setEvento(eventoService.buscar(evento));
 		if (!urlHomolog.isBlank())

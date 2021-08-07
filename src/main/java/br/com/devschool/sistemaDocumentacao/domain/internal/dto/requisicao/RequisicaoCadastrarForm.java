@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.Requisicao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl.RequisicaoServiceImpl;
 
 public class RequisicaoCadastrarForm {
 
@@ -26,7 +26,7 @@ public class RequisicaoCadastrarForm {
 	@NotNull
 	private Integer ordem;
 
-	public Requisicao toRequisicao(EventoService eventoService, RequisicaoService requisicaoService) {
+	public Requisicao toRequisicao(EventoService eventoService, RequisicaoServiceImpl requisicaoService) {
 		Requisicao requisicao = new Requisicao();
 		requisicao.setEvento(eventoService.buscar(evento));
 		requisicao.setUrlHomolog(urlHomolog);

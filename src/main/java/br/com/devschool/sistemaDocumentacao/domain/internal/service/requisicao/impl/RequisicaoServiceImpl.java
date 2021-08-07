@@ -1,8 +1,9 @@
-package br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao;
+package br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.impl;
 
 import java.util.List;
 import java.util.Optional;
 
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.Event
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.requisicao.RequisicaoRepository;
 
 @Service
-public class RequisicaoService {
+public class RequisicaoServiceImpl implements RequisicaoService {
 
 	@Autowired
 	private RequisicaoRepository requisicaoRepository;

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto.TelaDto;
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto.TelaFormAtualizarDto;
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto.TelaFormCadastrarDto;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormAtualizarDto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormCadastrarDto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.impl.TelaServiceImpl;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
@@ -29,7 +29,7 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentE
 public class TelaController {
 
 	@Autowired
-	private TelaService telaService;
+	private TelaServiceImpl telaService;
 
 	@GetMapping
 	public ResponseEntity<List<TelaDto>> listar(@RequestParam(required = false) Long idVersao) throws NoContentException {
