@@ -1,18 +1,22 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.versao.VersaoRepository;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,9 +38,12 @@ public class TelaFormCadastrarDto {
 	private String imagem;
 	private Long telaPai;
 
-	public Tela toTela(TelaRepository telaRepository, VersaoRepository versaoRepository) throws NoContentException {
+	public Tela toTela(TelaRepository telaRepository, VersaoRepository versaoRepository){
+		Optional<Versao> versao = versaoRepository.findById(this.versao);
+		if (versao.isEmpty()) throw new NoContentException("TelaFormCadastrarDto", "toTela", this.toString(), "Não foi encontrada Versão com essa id");
+		
 		Tela tela = Tela.builder()
-				.versao(versaoRepository.findById(versao).get())
+				.versao(versao.get())
 				.telaPai((telaPai != null)? telaRepository.findById(telaPai).get() : null)
 				.nomeTela(nomeTela)
 				.ordem(ordem)
