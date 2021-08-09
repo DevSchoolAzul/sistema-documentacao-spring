@@ -8,10 +8,13 @@ public class DeleteEntityWithDependentsException extends RuntimeException {
 
 	private String entidade;
 	private String metodo;
+	private String parametros;
 	
-	public DeleteEntityWithDependentsException(String entidade, String metodo, String message) {
+	public DeleteEntityWithDependentsException(String entidade, String metodo, String parametros, String message) {
 		super(message);
 		this.entidade = entidade;
 		this.metodo = metodo;
+		this.parametros = parametros;
 	}
+
 }

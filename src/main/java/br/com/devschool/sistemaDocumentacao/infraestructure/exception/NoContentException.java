@@ -8,11 +8,13 @@ public class NoContentException extends RuntimeException {
 
 	private String entidade;
 	private String metodo;
+	private String parametros;
 	
-	public NoContentException(String entidade, String metodo, String message) {
+	public NoContentException(String entidade, String metodo, String parametros, String message) {
 		super(message);
 		this.entidade = entidade;
 		this.metodo = metodo;
+		this.parametros = parametros;
 	}
 	
 }
