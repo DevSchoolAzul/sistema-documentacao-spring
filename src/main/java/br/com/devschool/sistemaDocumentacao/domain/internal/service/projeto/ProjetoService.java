@@ -10,14 +10,14 @@ import java.util.List;
 
 public interface ProjetoService {
 
-    List<Projeto> getAllProjects() throws NoContentException;
+    List<Projeto> getAllProjects();
 
-    Projeto getProjectById(Long id) throws NoContentException;
+    Projeto getProjectById(Long id);
 
     Projeto createProject(ProjetoForm form);
 
-    Projeto updateProjectById(Long id, AtualizacaoProjetoForm form) throws NoContentException;
+    Projeto updateProjectById(Long id, AtualizacaoProjetoForm form);
 
-    void deleteProject(Long id) throws DeleteEntityWithDependentsException, NoContentException;
+    void deleteProject(Long id);
 
 }

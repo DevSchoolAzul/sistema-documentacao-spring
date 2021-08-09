@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class ProjetoForm {
     @NotNull @NotEmpty
     private String nome;
-    @NotNull @NotEmpty
+    @NotNull
     private Boolean situacao;
 
     public Projeto convertFormToEntity() {

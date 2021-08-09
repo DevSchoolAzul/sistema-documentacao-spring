@@ -24,20 +24,20 @@ public class ProjetoServiceImpl implements ProjetoService {
     }
 
     @Override
-    public List<Projeto> getAllProjects() throws NoContentException{
+    public List<Projeto> getAllProjects(){
         List<Projeto> projects= projetoRepository.findAll();
         if(projects.isEmpty()) {
-            throw new NoContentException("Nenhum projeto encontrado");
+            throw new NoContentException("ProjetoService", "getAllProjects", "Nenhum projeto encontrado");
         }
         return projects;
     }
 
     @Override
-    public Projeto getProjectById(Long id) throws NoContentException {
+    public Projeto getProjectById(Long id){
         Optional<Projeto> optionalProject = projetoRepository.findById(id);
 
         if(optionalProject.isEmpty()) {
-            throw new NoContentException("Nenhum projeto cadastrado com ID " + id);
+            throw new NoContentException("ProjetoService", "getProjectById", "Nenhum projeto cadastrado com ID " + id);
         }
 
         return optionalProject.get();
@@ -50,11 +50,11 @@ public class ProjetoServiceImpl implements ProjetoService {
     }
 
     @Override
-    public Projeto updateProjectById(Long id, AtualizacaoProjetoForm form) throws NoContentException{
+    public Projeto updateProjectById(Long id, AtualizacaoProjetoForm form) {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(id);
 
         if(optionalProjeto.isEmpty()) {
-            throw new NoContentException("Nenhuma projeto cadastrado com ID " + id);
+            throw new NoContentException("ProjetoService", "updateProjectById", "Nenhuma projeto cadastrado com ID " + id);
         }
 
         Projeto project = form.convertFormToEntity(optionalProjeto.get());
@@ -62,10 +62,10 @@ public class ProjetoServiceImpl implements ProjetoService {
     }
 
     @Override
-    public void deleteProject(Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public void deleteProject(Long id) {
         Projeto project = this.getProjectById(id);
         if (!project.getVersoes().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("Esse Projeto não pode ser excluído pois já possui versão cadastrada.");
+            throw new DeleteEntityWithDependentsException("ProjetoService", "deleteProject", "Esse Projeto não pode ser excluído pois já possui versão cadastrada.");
         }
         projetoRepository.deleteById(id);
     }
