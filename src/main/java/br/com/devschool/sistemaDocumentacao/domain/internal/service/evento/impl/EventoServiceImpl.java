@@ -30,22 +30,22 @@ public class EventoServiceImpl implements EventoService {
     }
 
     @Override
-    public List<Evento> getAllEvents() throws NoContentException {
+    public List<Evento> getAllEvents() {
         List<Evento> events = eventoRepository.findAll();
 
         if(events.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","getAllEvents","none", "Nenhum evento encontrado");
         }
 
         return events;
     }
 
     @Override
-    public Evento getEventById(Long id) throws NoContentException {
+    public Evento getEventById(Long id) {
         Optional<Evento> optionalEvent = eventoRepository.findById(id);
 
         if(optionalEvent.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","getEventById","ID: " + id, "Nenhum evento cadastrado com ID " + id);
         }
 
         return optionalEvent.get();
@@ -58,11 +58,11 @@ public class EventoServiceImpl implements EventoService {
     }
 
     @Override
-    public Evento updateEvent(Long id, AtualizacaoEventoForm form) throws NoContentException {
+    public Evento updateEvent(Long id, AtualizacaoEventoForm form) {
         Optional<Evento> optionalEvent = eventoRepository.findById(id);
 
         if(optionalEvent.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","updateEvent","ID: " + id, "Nenhum evento cadastrado com ID " + id);
         }
 
         Evento event = form.updateEntity(optionalEvent.get());
@@ -71,11 +71,11 @@ public class EventoServiceImpl implements EventoService {
     }
 
     @Override
-    public void deleteEvent(Long id) throws NoContentException, DeleteEntityWithDependentsException {
+    public void deleteEvent(Long id) {
         Evento event = this.getEventById(id);
 
         if (!event.getRequisicoes().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("Esse Evento não pode ser excluído pois já possui requisição cadastrada.");
+            throw new DeleteEntityWithDependentsException("EventoService","deleteEvent","ID: " + id,"Esse Evento não pode ser excluído pois já possui requisição cadastrada.");
         }
 
     }

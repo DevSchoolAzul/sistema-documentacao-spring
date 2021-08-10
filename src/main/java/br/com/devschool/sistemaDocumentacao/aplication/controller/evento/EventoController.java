@@ -1,12 +1,9 @@
 package br.com.devschool.sistemaDocumentacao.aplication.controller.evento;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.dto.EventoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.AtualizacaoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.EventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +23,13 @@ public class EventoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EventoDto>> getAllEvents() throws NoContentException {
+    public ResponseEntity<List<EventoDto>> getAllEvents() {
         List<EventoDto> eventsDto = EventoDto.convertList(eventoService.getAllEvents());
         return ResponseEntity.ok(eventsDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventoDto> getEventById(@PathVariable Long id) throws NoContentException {
+    public ResponseEntity<EventoDto> getEventById(@PathVariable Long id) {
         EventoDto eventoDto = new EventoDto(eventoService.getEventById(id));
         return ResponseEntity.ok(eventoDto);
     }
@@ -44,13 +41,13 @@ public class EventoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EventoDto> updateEvent(@PathVariable Long id, @Valid @RequestBody AtualizacaoEventoForm form) throws NoContentException {
+    public ResponseEntity<EventoDto> updateEvent(@PathVariable Long id, @Valid @RequestBody AtualizacaoEventoForm form) {
         EventoDto eventoDto = new EventoDto(eventoService.updateEvent(id, form));
         return ResponseEntity.ok(eventoDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteEvent(@PathVariable Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public ResponseEntity<?> deleteEvent(@PathVariable Long id) {
         eventoService.deleteEvent(id);
         return ResponseEntity.ok().build();
     }

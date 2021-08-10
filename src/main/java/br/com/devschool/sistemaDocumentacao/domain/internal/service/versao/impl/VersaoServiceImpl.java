@@ -32,7 +32,7 @@ public class VersaoServiceImpl implements VersaoService {
         List<Versao> versions = versaoRepository.findAll();
 
         if (versions.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("VersoService","getAllVersoes","none","Nenhuma versão encontrada");
         }
 
         return versions;
@@ -43,7 +43,7 @@ public class VersaoServiceImpl implements VersaoService {
         Optional<Versao> optionalVersion= versaoRepository.findById(id);
 
         if(optionalVersion.isEmpty()) {
-            throw new NoContentException("Nenhuma versão cadastrado com ID " + id);
+            throw new NoContentException("VersoService","getVersionById","ID: " + id,"Nenhuma versão cadastrado com ID " + id);
         }
 
         return optionalVersion.get();
@@ -60,7 +60,7 @@ public class VersaoServiceImpl implements VersaoService {
         Optional<Versao> optionalVersion = versaoRepository.findById(id);
 
         if(optionalVersion.isPresent()) {
-            throw new NoContentException("Nenhuma versão cadastrada com ID " + id);
+            throw new NoContentException("VersoService","updateVersion","ID: " + id,"Nenhuma versão cadastrada com ID " + id);
         }
         Versao version = form.updateEntity(optionalVersion.get());
 
@@ -71,7 +71,7 @@ public class VersaoServiceImpl implements VersaoService {
     public void deleteVersion(Long id) throws NoContentException, DeleteEntityWithDependentsException {
         Versao versao = this.getVersionById(id);
         if(!versao.getTelas().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("Essa Versão não pode ser excluída pois já possui tela cadastrada.");
+            throw new DeleteEntityWithDependentsException("VersoService","deleVersion","ID: " + id,"Essa Versão não pode ser excluída pois já possui tela cadastrada.");
         }
         versaoRepository.deleteById(id);
     }

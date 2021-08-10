@@ -27,13 +27,13 @@ public class TipoEventoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TipoEventoDto>> getAllEventTypes() throws NoContentException {
+    public ResponseEntity<List<TipoEventoDto>> getAllEventTypes() {
         List<TipoEventoDto> eventTypesDto = TipoEventoDto.convertList(tipoEventoService.getAllEventTypes());
         return ResponseEntity.ok(eventTypesDto);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TipoEventoDto> getEventTypeById(@PathVariable Long id) throws NoContentException {
+    public ResponseEntity<TipoEventoDto> getEventTypeById(@PathVariable Long id) {
         TipoEventoDto eventTypeDto = new TipoEventoDto(tipoEventoService.getEventTypeById(id));
         return ResponseEntity.ok(eventTypeDto);
     }
@@ -45,13 +45,13 @@ public class TipoEventoController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TipoEventoDto> updateEventType(@PathVariable Long id, @Valid @RequestBody AtualizacaoTipoEventoForm form) throws NoContentException {
+    public ResponseEntity<TipoEventoDto> updateEventType(@PathVariable Long id, @Valid @RequestBody AtualizacaoTipoEventoForm form) {
         TipoEventoDto eventTypeDto = new TipoEventoDto(tipoEventoService.updateEventType(id,form));
         return ResponseEntity.ok(eventTypeDto);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<?> deleteEventType(@PathVariable Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public ResponseEntity<?> deleteEventType(@PathVariable Long id) {
         tipoEventoService.deleteEventType(id);
         return ResponseEntity.ok().build();
     }

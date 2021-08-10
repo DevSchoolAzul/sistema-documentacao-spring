@@ -27,7 +27,7 @@ public class ProjetoServiceImpl implements ProjetoService {
     public List<Projeto> getAllProjects(){
         List<Projeto> projects= projetoRepository.findAll();
         if(projects.isEmpty()) {
-            throw new NoContentException("ProjetoService", "getAllProjects", "Nenhum projeto encontrado");
+            throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
         }
         return projects;
     }
@@ -37,7 +37,7 @@ public class ProjetoServiceImpl implements ProjetoService {
         Optional<Projeto> optionalProject = projetoRepository.findById(id);
 
         if(optionalProject.isEmpty()) {
-            throw new NoContentException("ProjetoService", "getProjectById", "Nenhum projeto cadastrado com ID " + id);
+            throw new NoContentException("ProjetoService", "getProjectById", "Id: " + id,"Nenhum projeto cadastrado com ID " + id);
         }
 
         return optionalProject.get();
@@ -54,7 +54,7 @@ public class ProjetoServiceImpl implements ProjetoService {
         Optional<Projeto> optionalProjeto = projetoRepository.findById(id);
 
         if(optionalProjeto.isEmpty()) {
-            throw new NoContentException("ProjetoService", "updateProjectById", "Nenhuma projeto cadastrado com ID " + id);
+            throw new NoContentException("ProjetoService", "updateProjectById", "Id: " + id,"Nenhuma projeto cadastrado com ID " + id);
         }
 
         Projeto project = form.convertFormToEntity(optionalProjeto.get());
@@ -65,7 +65,7 @@ public class ProjetoServiceImpl implements ProjetoService {
     public void deleteProject(Long id) {
         Projeto project = this.getProjectById(id);
         if (!project.getVersoes().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("ProjetoService", "deleteProject", "Esse Projeto não pode ser excluído pois já possui versão cadastrada.");
+            throw new DeleteEntityWithDependentsException("ProjetoService", "deleteProject", "Id: " + id,"Esse Projeto não pode ser excluído pois já possui versão cadastrada.");
         }
         projetoRepository.deleteById(id);
     }

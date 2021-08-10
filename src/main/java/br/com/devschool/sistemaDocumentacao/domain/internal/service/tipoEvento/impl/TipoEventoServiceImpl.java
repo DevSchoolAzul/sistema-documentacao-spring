@@ -25,19 +25,19 @@ public class TipoEventoServiceImpl implements TipoEventoService {
 
 
     @Override
-    public List<TipoEvento> getAllEventTypes() throws NoContentException {
+    public List<TipoEvento> getAllEventTypes() {
         List<TipoEvento> eventTypes = tipoEventoRepository.findAll();
         if(eventTypes.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","updateEvent","none","Nenhum Tipo de Evento encontrado");
         }
         return eventTypes;
     }
 
     @Override
-    public TipoEvento getEventTypeById(Long id) throws NoContentException {
+    public TipoEvento getEventTypeById(Long id) {
         Optional<TipoEvento> optionalEventType = tipoEventoRepository.findById(id);
         if(optionalEventType.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","updateEvent","ID: " + id,"Nenhum tipo de evento cadastrado com ID " + id);
         }
         return optionalEventType.get();
     }
@@ -49,20 +49,20 @@ public class TipoEventoServiceImpl implements TipoEventoService {
     }
 
     @Override
-    public TipoEvento updateEventType(Long id, AtualizacaoTipoEventoForm form) throws NoContentException {
+    public TipoEvento updateEventType(Long id, AtualizacaoTipoEventoForm form) {
         Optional<TipoEvento> optionalEventType = tipoEventoRepository.findById(id);
         if(optionalEventType.isEmpty()) {
-            throw new NoContentException("");
+            throw new NoContentException("EventoService","updateEvent","ID: " + id,"Nenhum tipo de evento cadastrado com ID " + id);
         }
         TipoEvento eventType = form.updateEntity(optionalEventType.get());
         return tipoEventoRepository.save(eventType);
     }
 
     @Override
-    public void deleteEventType(Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public void deleteEventType(Long id) {
         TipoEvento eventType = this.getEventTypeById(id);
         if(!eventType.getEventos().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("Esse Tipo de Evento não pode ser excluído pois já possui evento cadastrado.");
+            throw new DeleteEntityWithDependentsException("TipoEventoService","deleEventType","ID: " + id,"Esse Tipo de Evento não pode ser excluído pois já possui evento cadastrado.");
         }
         tipoEventoRepository.deleteById(id);
     }

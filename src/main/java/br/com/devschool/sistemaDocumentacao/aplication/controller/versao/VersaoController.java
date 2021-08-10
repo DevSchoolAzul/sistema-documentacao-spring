@@ -4,8 +4,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.dto.Ver
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.AtualizacaoVersaoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.VersaoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.versao.VersaoService;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +23,13 @@ public class VersaoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VersaoDto>> getAllVersions() throws NoContentException {
+    public ResponseEntity<List<VersaoDto>> getAllVersions() {
         List<VersaoDto> versionsDto = VersaoDto.convertList(versaoService.getAllVersions());
         return ResponseEntity.ok(versionsDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VersaoDto> getVersionById(@PathVariable Long id) throws NoContentException {
+    public ResponseEntity<VersaoDto> getVersionById(@PathVariable Long id) {
         VersaoDto versionDto = new VersaoDto(versaoService.getVersionById(id));
         return ResponseEntity.ok(versionDto);
     }
@@ -43,14 +41,14 @@ public class VersaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<VersaoDto> updateProject(@PathVariable Long id, @Valid @RequestBody AtualizacaoVersaoForm form) throws NoContentException {
+    public ResponseEntity<VersaoDto> updateProject(@PathVariable Long id, @Valid @RequestBody AtualizacaoVersaoForm form){
         VersaoDto versaoDto = new VersaoDto(versaoService.updateVersion(id, form));
         return ResponseEntity.ok(versaoDto);
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteVersion(@PathVariable Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public ResponseEntity<?> deleteVersion(@PathVariable Long id) {
         versaoService.deleteVersion(id);
         return ResponseEntity.ok().build();
     }
