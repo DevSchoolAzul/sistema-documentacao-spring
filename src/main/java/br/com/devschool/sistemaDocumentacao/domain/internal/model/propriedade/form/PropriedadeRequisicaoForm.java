@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PropriedadeRequisicaoForm {
 
-    private Long id;
     private String chave;
     private String valor;
     private Integer ordem;
@@ -22,7 +21,6 @@ public class PropriedadeRequisicaoForm {
     public PropriedadeRequisicao convertFormToEntity(RequisicaoService requisicaoService) throws NoContentException {
         Requisicao requisition = requisicaoService.buscar(requisicaoId);
         return PropriedadeRequisicao.builder()
-                .id(this.id)
                 .chave(this.chave)
                 .valor(this.valor)
                 .ordem(this.ordem)

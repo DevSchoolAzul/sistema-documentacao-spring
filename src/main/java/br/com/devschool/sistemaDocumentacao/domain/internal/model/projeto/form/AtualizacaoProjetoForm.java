@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AtualizacaoProjetoForm {
-    @NotNull @NotEmpty
+    @NotNull
     private String nome;
-    @NotNull @NotEmpty
+    @NotNull
     private Boolean situacao;
 
     public Projeto convertFormToEntity(Projeto project) {
