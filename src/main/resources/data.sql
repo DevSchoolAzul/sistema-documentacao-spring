@@ -107,43 +107,70 @@ create table eventos (
        references requisicoes;
 
 
-
 INSERT INTO PROJETOS (nome, situacao) VALUES  
-('projeto 1', true), ('projeto 2', true);
+('projeto com versoes cadastradas', true),
+('projeto sem versões para ser deletado', false),
+('prujeto com nome errado pra ser alterado', false),
+('projeto de referencia pra inserção de versão', true) ;
 
 INSERT INTO VERSOES 
 (gmud, descricao, data_lancamento, situacao, ordem, numero_versao, projeto_id)
 values
-('123456', 'versao beta', '2021-07-01', true, 2, '0.1', 1),
-('46516', 'versao final', '2021-08-01', true, 1, '1.0', 1),
-('46846', 'versao beta', '2020-07-05', false, 3, '0.1', 2)
+('123456', 'versao com telas cadastradas', '2021-07-01', true, 2, '0.1', 1),
+('46516', 'versao sem telas para ser deletada', '2021-08-01', true, 1, '1.0', 1),
+('46846', 'verçao com nome errado pra ser alterado', '2020-07-05', false, 3, '0.1', 1),
+('46846', 'versao pra inserção de telas', '2020-07-05', true, 4, '1.0', 1)
 ;
 
 INSERT INTO TELAS 
 (versao_id, data_cadastro, nome_tela, imagem, situacao, tela_pai_id,
 ordem, url_log, versao_origem_id)
 values 
-(1, '2021-07-01', 'Tela A', 'imagem da tela', true, null,
+(1, '2021-07-01', 'Tela com filhos e com eventos cadastrados', 'imagem da tela', true, null,
 1, 'http://urlLog.com', 1),
-(1, '2020-07-01', 'Tela B', 'foot', true, null,
-2, 'http://urlLogasfas.com', 1)
+(1, '2021-07-01', 'Tela filha sem filho com eventos cadastrados', 'imagem da tela', true, 1,
+1, 'http://urlLog.com', 1),
+(1, '2020-07-01', 'Tela filha sem filho e sem eventos cadastrados', 'imagem da tela', true, 1,
+2, 'http://urlLog.com', 1),
+(1, '2020-07-01', 'Tela filha com filho e sem eventos cadastrados', 'imagem da tela', true, 1,
+3, 'http://urlLog.com', 1),
+(1, '2020-07-01', 'apenas um tela filha', 'imagem da tela', true, 4,
+1, 'http://urlLog.com', 1),
+(1, '2020-07-01', 'Tela sem pai, sem filho e sem eventos cadastrados', 'imagem da tela', true, null,
+2, 'http://urlLog.com', 1)
 ;  
 
 INSERT INTO TIPO_EVENTOS
 (NOME, SITUACAO)
 VALUES
-('onClick', true),
-('onLoad', true);
+('Tipo de evento com evento', true),
+('Tipo de evento sem evento', true);
 
 INSERT INTO EVENTOS
 (SITUACAO, ORDEM, PARAMETROS, TELA_ID, TIPO_EVENTO_ID)
 VALUES
-(true, 1, 'login, senha', 1, 1),
-(true, 2, 'email, senha', 1, 1); 
+(true, 1, 'Evento de "Tela com filhos e com eventos cadastrados"', 1, 1),
+(true, 2, 'Evento de "Tela filha sem filho com eventos cadastrados"', 2, 1),
+(true, 2, 'Evento com requisicao', 1, 1),
+(true, 3, 'Evento sem requisicao', 1, 1)
+;
 
 INSERT INTO REQUISICOES
 (CAMADA, DESCRICAO, ORDEM, URL_HOMOLOG, EVENTO_ID,
 REQUISICAO_PAI_ID, URI_PROD, SITUACAO)
 VALUES
-('barramento', 'descricao da camada', 1 ,'urlHomolog.com',
-1, null, 'uriProd.com', true);
+('barramento', 'Requisicao com propriedades', 1 ,'urlHomolog.com',
+3, null, 'uriProd.com', true),
+('camada 2', 'Requisicao sem propriedades', 2 ,'urlHomolog2.com',
+3, null, 'uriProd.com', true),
+('camada 2', 'Requisicao com filha', 2 ,'urlHomolog2.com',
+3, null, 'uriProd.com', true),
+('camada 2', 'Requisicao sem filha', 2 ,'urlHomolog2.com',
+3, 1, 'uriProd.com', true)
+;
+
+INSERT INTO PROPRIEDADES
+(requisicao_id, chave, valor, ordem)
+VALUES
+(1, 'TTL', '1000', 1)
+;

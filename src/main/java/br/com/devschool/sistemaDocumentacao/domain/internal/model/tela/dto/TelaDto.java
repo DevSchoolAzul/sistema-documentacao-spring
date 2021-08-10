@@ -43,7 +43,6 @@ public class TelaDto {
 	}
 	
 	public static TelaDto converter(Tela tela) {
-//		return new TelaDto(tela);
 		if (tela == null) return null;
 		return TelaDto.builder()
 				.id(tela.getId())

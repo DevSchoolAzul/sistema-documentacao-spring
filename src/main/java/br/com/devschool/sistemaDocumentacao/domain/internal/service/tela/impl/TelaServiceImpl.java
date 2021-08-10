@@ -32,34 +32,34 @@ public class TelaServiceImpl implements TelaService {
 	}
 
 	@Override
-	public Tela cadastrar(TelaFormCadastrarDto formTela) throws NoContentException {
+	public Tela cadastrar(TelaFormCadastrarDto formTela) {
 		Tela tela = formTela.toTela(telaRepository, versaoRepository);
 		return telaRepository.save(tela);
 	}
 
 	@Override
-	public Tela buscar(Long id) throws NoContentException {
+	public Tela buscar(Long id) {
 		Optional<Tela> optional = telaRepository.findById(id);
 		if (optional.isPresent()) {
 			return optional.get();
 		}
-		throw new NoContentException("nenhuma tela cadastrada com id " + id);
+		throw new NoContentException("Tela Service", "buscar", "Id: %d".formatted(id), "nenhuma tela cadastrada com id " + id);
 	}
 
 	@Override
-	public Tela atualizar(Long id, TelaFormAtualizarDto telaForm) throws NoContentException {
+	public Tela atualizar(Long id, TelaFormAtualizarDto telaForm) {
 		Tela tela = this.buscar(id);
 		telaForm.atualizar(tela, this);
 		return telaRepository.save(tela);
 	}
 
 	@Override
-	public void deletar(Long id) throws NoContentException, DeleteEntityWithDependentsException {
+	public void deletar(Long id) {
 		Tela tela = this.buscar(id);
-		if (tela.getEventos().size() > 0)
-			throw new DeleteEntityWithDependentsException("Esta tela não pode ser excluida pois já possui telas assiciadas a ela."); 
 		if (tela.getTelasFilhas().size() > 0)  
-			throw new DeleteEntityWithDependentsException("Esta tela não pode ser excluida pois já possui eventos assiciadas a ela.");
+			throw new DeleteEntityWithDependentsException("TelaService", "deletar", "Id: %d".formatted(id), "Esta tela não pode ser excluida pois já possui telas assiciadas a ela."); 
+		if (tela.getEventos().size() > 0)
+			throw new DeleteEntityWithDependentsException("TelaService", "deletar", "Id: %d".formatted(id), "Esta tela não pode ser excluida pois já possui eventos assiciadas a ela.");
 		telaRepository.delete(tela);
 	}
 

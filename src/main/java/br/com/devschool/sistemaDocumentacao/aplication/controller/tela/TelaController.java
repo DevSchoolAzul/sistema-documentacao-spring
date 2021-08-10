@@ -20,8 +20,7 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.dto.TelaDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormAtualizarDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormCadastrarDto;
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.impl.TelaServiceImpl;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 @RestController
@@ -29,39 +28,39 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentE
 public class TelaController {
 
 	@Autowired
-	private TelaServiceImpl telaService;
+	private TelaService telaService;
 
 	@GetMapping
-	public ResponseEntity<List<TelaDto>> listar(@RequestParam(required = false) Long idVersao) throws NoContentException {
+	public ResponseEntity<List<TelaDto>> listar(@RequestParam(required = false) Long idVersao) {
 		List<Tela> telas = telaService.listar(idVersao);
 		if (telas.isEmpty()) {
-			throw new NoContentException("Não foi encontrado telas para essa versão");
+			throw new NoContentException("TelaController", "listar", "idVersao: %d".formatted(idVersao), "Não foi encontrado telas para essa versão");
 		}
 		return ResponseEntity.ok(TelaDto.converter(telas));
 	}
 
 	@PostMapping
-	public ResponseEntity<TelaDto> novaTela(@RequestBody @Valid TelaFormCadastrarDto telaForm) throws NoContentException {
+	public ResponseEntity<TelaDto> novaTela(@RequestBody @Valid TelaFormCadastrarDto telaForm) {
 		TelaDto tela = TelaDto.converter(telaService.cadastrar(telaForm));
 		return ResponseEntity.ok(tela);
 	}
 
 	@GetMapping("/{id}")
-	private ResponseEntity<TelaDto> detalhesTela(@PathVariable Long id) throws NoContentException {
+	private ResponseEntity<TelaDto> detalhesTela(@PathVariable Long id) {
 		TelaDto tela = TelaDto.converter(telaService.buscar(id));
 
 		return ResponseEntity.ok(tela);
 	}
 
 	@PutMapping("/{id}")
-	private ResponseEntity<TelaDto> alterar(@PathVariable Long id, @RequestBody @Valid TelaFormAtualizarDto telaForm) throws NoContentException {
+	private ResponseEntity<TelaDto> alterar(@PathVariable Long id, @RequestBody @Valid TelaFormAtualizarDto telaForm) {
 		TelaDto tela = TelaDto.converter(telaService.atualizar(id, telaForm));
 
 		return ResponseEntity.ok(tela);
 	}
 
 	@DeleteMapping("/{id}")
-	private ResponseEntity<?> deletar(@PathVariable Long id) throws NoContentException, DeleteEntityWithDependentsException {
+	private ResponseEntity<?> deletar(@PathVariable Long id) {
 		telaService.deletar(id);
 
 		return ResponseEntity.ok().build();

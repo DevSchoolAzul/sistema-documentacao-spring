@@ -1,9 +1,20 @@
 package br.com.devschool.sistemaDocumentacao.infraestructure.exception;
 
-public class DeleteEntityWithDependentsException extends Exception {
+import lombok.Getter;
+
+@Getter
+public class DeleteEntityWithDependentsException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public DeleteEntityWithDependentsException(String message) {
+	private String entidade;
+	private String metodo;
+	private String parametros;
+	
+	public DeleteEntityWithDependentsException(String entidade, String metodo, String parametros, String message) {
 		super(message);
+		this.entidade = entidade;
+		this.metodo = metodo;
+		this.parametros = parametros;
 	}
+
 }

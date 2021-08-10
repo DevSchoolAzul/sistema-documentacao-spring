@@ -1,18 +1,24 @@
 package br.com.devschool.sistemaDocumentacao.aplication.controller.projeto;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.dto.ProjetoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.ProjetoService;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/projetos")
@@ -26,13 +32,13 @@ public class ProjetoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjetoDto>> getAllProjects() throws NoContentException {
+    public ResponseEntity<List<ProjetoDto>> getAllProjects() {
         List<ProjetoDto> projects = ProjetoDto.convertList(projetoService.getAllProjects());
         return ResponseEntity.ok(projects);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProjetoDto>  getProjectById(@PathVariable Long id) throws NoContentException {
+    public ResponseEntity<ProjetoDto>  getProjectById(@PathVariable Long id) {
         ProjetoDto projectDto = new ProjetoDto(projetoService.getProjectById(id));
         return ResponseEntity.ok(projectDto);
     }
@@ -44,13 +50,13 @@ public class ProjetoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProjetoDto> updateProject(@PathVariable Long id,@Valid @RequestBody AtualizacaoProjetoForm form) throws NoContentException {
+    public ResponseEntity<ProjetoDto> updateProject(@PathVariable Long id,@Valid @RequestBody AtualizacaoProjetoForm form)  {
         ProjetoDto projetoDto = new ProjetoDto(projetoService.updateProjectById(id, form));
         return ResponseEntity.ok(projetoDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProject(@PathVariable Long id) throws DeleteEntityWithDependentsException, NoContentException {
+    public ResponseEntity deleteProject(@PathVariable Long id) {
         projetoService.deleteProject(id);
         return ResponseEntity.ok().build();
     }
