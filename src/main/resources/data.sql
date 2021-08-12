@@ -172,5 +172,6 @@ VALUES
 INSERT INTO PROPRIEDADES
 (requisicao_id, chave, valor, ordem)
 VALUES
-(1, 'TTL', '1000', 1)
+(1, 'TTL', '1000', 1),
+(1, 'Propriedade pra se excluida', 'Propriedade pra se excluida', 2)
 ;
