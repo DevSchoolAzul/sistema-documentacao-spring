@@ -22,7 +22,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.for
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.form.RequisicaoCadastrarForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 
@@ -37,35 +36,35 @@ public class RequisicaoController {
 	private EventoService eventoService;
 	
 	@GetMapping
-	public ResponseEntity<List<RequisicaoDto>> listar(@RequestParam(name = "idEvento", required = false) Long idEvento) throws NoContentException {
+	public ResponseEntity<List<RequisicaoDto>> listar(@RequestParam(name = "idEvento", required = false) Long idEvento) {
 		List<Requisicao> requisicoes = requisicaoService.listar(idEvento);
 		if (requisicoes.isEmpty()) {
-			throw new NoContentException("Nenhuma requisicao cadastrada para este evento.");
+			throw new NoContentException(this.getClass().getName(), "listar", "idEvento:" + idEvento, "Nenhuma requisicao cadastrada para este evento.");
 		}
 		return ResponseEntity.ok(RequisicaoDto.converter(requisicoes));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<RequisicaoDto> detalhes(@PathVariable Long id) throws NoContentException {
+	public ResponseEntity<RequisicaoDto> detalhes(@PathVariable Long id) {
 		Requisicao requisicao = requisicaoService.buscar(id);
 		return ResponseEntity.ok(new RequisicaoDto(requisicao));
 	}
 	
 	@PostMapping
-	public ResponseEntity<RequisicaoDto> novo(@RequestBody @Valid RequisicaoCadastrarForm requisicaoForm) throws NoContentException {
+	public ResponseEntity<RequisicaoDto> novo(@RequestBody @Valid RequisicaoCadastrarForm requisicaoForm) {
 		Requisicao requisicao = requisicaoService.cadastrar(requisicaoForm.toRequisicao(eventoService, requisicaoService));
 		return ResponseEntity.ok(new RequisicaoDto(requisicao));
 	
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<RequisicaoDto> alterar(@PathVariable Long id, @RequestBody RequisicaoAlterarForm requisicaoForm) throws NoContentException {
+	public ResponseEntity<RequisicaoDto> alterar(@PathVariable Long id, @RequestBody RequisicaoAlterarForm requisicaoForm) {
 		Requisicao requisicao = requisicaoService.alterar(id, requisicaoForm);
 		return ResponseEntity.ok(new RequisicaoDto(requisicao));
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> excluir(@PathVariable Long id) throws NoContentException, DeleteEntityWithDependentsException {
+	public ResponseEntity<?> excluir(@PathVariable Long id) {
 		requisicaoService.excluir(id);
 		return ResponseEntity.ok().build();
 	}

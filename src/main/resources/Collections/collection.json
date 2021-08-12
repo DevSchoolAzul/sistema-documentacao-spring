@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d2f5bada-f073-4126-b79c-50d6a3296cd8",
+		"_postman_id": "5ba3be83-0511-43bb-aa3e-6ae4e8cecc13",
 		"name": "Sistema Documentacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -948,6 +948,34 @@
 							"response": []
 						},
 						{
+							"name": "Informa um evento inexistente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"evento\": 999,\n    \"urlHomolog\": \"http://urlHomolog.com\",\n    \"uriProd\": \"http://uriProd.com\",\n    \"descricao\": \"teste de nova requisicao\",\n    \"requisicaoPai\" : 99999,\n    \"camada\": \"Camada de teste\",\n    \"situacao\": true,\n    \"ordem\": 1\n}"
+								},
+								"url": {
+									"raw": "localhost:8080/requisicoes",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"requisicoes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "exclui uma tela que tem filho",
 							"request": {
 								"method": "DELETE",
@@ -1071,6 +1099,35 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"evento\": 1,\n    \"urlHomolog\": \"http://Url-alterado.br\",\n    \"uriProd\": \"http://URI-alterado.br\",\n    \"descricao\": \"teste de altarar requisicao\",\n    \"camada\": \"Camada de alteracao\",\n    \"situacao\": false,\n    \"ordem\": 2\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/requisicoes/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"requisicoes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterando apenas uma propriedade",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"camada\": \"Camada alterada\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/requisicoes/1",

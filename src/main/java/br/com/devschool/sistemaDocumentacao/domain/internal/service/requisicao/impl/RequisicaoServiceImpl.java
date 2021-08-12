@@ -33,25 +33,25 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 		return requisicaoRepository.findByEventoId(idEvento);
 	}
 	
-	public Requisicao buscar(Long id) throws NoContentException  {
+	public Requisicao buscar(Long id) {
 		Optional<Requisicao> requisicao = requisicaoRepository.findById(id);
 		if (requisicao.isPresent()) {
 			return requisicao.get();
 		}
-		throw new NoContentException("Nenhuma Requisição cadastrada com este Id");
+		throw new NoContentException(this.getClass().getName(), "buscar", "Id: " + id, "Nenhuma Requisição cadastrada com este Id");
 	}
 	
-	public Requisicao alterar(Long id, RequisicaoAlterarForm requisicaoForm) throws NoContentException {
+	public Requisicao alterar(Long id, RequisicaoAlterarForm requisicaoForm) {
 		Requisicao requisicao = this.buscar(id);
 		requisicaoForm.atualizar(requisicao, eventoService, this);
 		requisicaoRepository.save(requisicao);
 		return requisicao;
 	}
 	
-	public void excluir(Long id) throws NoContentException, DeleteEntityWithDependentsException {
+	public void excluir(Long id) {
 		Requisicao requisicao = this.buscar(id);
 		if (requisicao.getPropriedades().size() > 0) {
-			throw new DeleteEntityWithDependentsException("Esta requisição não pode ser excluida pois possui propriedades associadas a ela.");
+			throw new DeleteEntityWithDependentsException(this.getClass().getName(), "excluir", "id:" + id, "Esta requisição não pode ser excluida pois possui propriedades associadas a ela.");
 		}
 		requisicaoRepository.delete(requisicao);
 	}

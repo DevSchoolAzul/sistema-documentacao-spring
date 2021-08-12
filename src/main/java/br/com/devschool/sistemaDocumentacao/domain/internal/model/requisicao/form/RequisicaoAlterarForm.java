@@ -25,15 +25,15 @@ public class RequisicaoAlterarForm {
 	public void atualizar(Requisicao requisicao, EventoService eventoService, RequisicaoService requisicaoService) throws NoContentException {
 		if (evento != null)
 			requisicao.setEvento(eventoService.getEventById(evento));
-		if (!urlHomolog.isBlank())
+		if (urlHomolog != null && !urlHomolog.isBlank())
 			requisicao.setUrlHomolog(urlHomolog);
-		if (!uriProd.isBlank())
+		if (uriProd != null && !uriProd.isBlank())
 			requisicao.setUriProd(uriProd);
-		if (!descricao.isBlank())
+		if (descricao != null && !descricao.isBlank())
 			requisicao.setDescricao(descricao);
 		if (requisicaoPai != null)
 			requisicao.setRequisicaoPai(requisicaoService.buscar(requisicaoPai));
-		if (!camada.isBlank())
+		if (camada != null && !camada.isBlank())
 			requisicao.setCamada(camada);
 		if (situacao != null)
 			requisicao.setSituacao(situacao);
