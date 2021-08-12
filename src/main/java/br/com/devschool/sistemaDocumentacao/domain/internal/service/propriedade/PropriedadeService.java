@@ -11,12 +11,12 @@ public interface PropriedadeService {
 
     List<PropriedadeRequisicao> getAllProperties();
 
-    PropriedadeRequisicao getPropertieById(Long id) throws NoContentException;
+    PropriedadeRequisicao getPropertieById(Long id);
 
-    PropriedadeRequisicao createPropertie(PropriedadeRequisicaoForm form) throws NoContentException;
+    PropriedadeRequisicao createPropertie(PropriedadeRequisicaoForm form);
 
-    PropriedadeRequisicao updatePropertie(Long id, AtualizacaoPropriedaddeRequisicaoForm form) throws NoContentException;
+    PropriedadeRequisicao updatePropertie(Long id, AtualizacaoPropriedaddeRequisicaoForm form);
 
-    void deletePropertie(Long id) throws NoContentException;
+    void deletePropertie(Long id);
 
 }
