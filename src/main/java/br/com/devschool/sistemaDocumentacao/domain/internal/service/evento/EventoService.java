@@ -5,13 +5,24 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.At
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.EventoForm;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
 public interface EventoService {
-    List<Evento> getAllEvents() throws NoContentException;
-    Evento getEventById(Long id) throws NoContentException;
+    @Cacheable(value = "listEvents")
+    List<Evento> getAllEvents();
+
+    @CacheEvict(value = "listEvents", allEntries = true)
+    Evento getEventById(Long id);
+
+    @CacheEvict(value = "listEvents", allEntries = true)
     Evento createEvent(EventoForm form);
-    Evento updateEvent(Long id, AtualizacaoEventoForm form) throws NoContentException;
-    void deleteEvent(Long id) throws NoContentException, DeleteEntityWithDependentsException;
+
+    @CacheEvict(value = "listEvents", allEntries = true)
+    Evento updateEvent(Long id, AtualizacaoEventoForm form);
+
+    @CacheEvict(value = "listEvents", allEntries = true)
+    void deleteEvent(Long id);
 }

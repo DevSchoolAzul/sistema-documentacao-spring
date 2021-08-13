@@ -3,21 +3,26 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.service.tipoEvento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.TipoEvento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.AtualizacaoTipoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tipoEvento.form.TipoEventoForm;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
 public interface TipoEventoService {
 
-    List<TipoEvento> getAllEventTypes() throws NoContentException;
+    @Cacheable(value = "listEventTypes")
+    List<TipoEvento> getAllEventTypes();
 
-    TipoEvento getEventTypeById(Long id) throws NoContentException;
+    @CacheEvict(value = "listEventTypes", allEntries = true)
+    TipoEvento getEventTypeById(Long id);
 
+    @CacheEvict(value = "listEventTypes", allEntries = true)
     TipoEvento createEventType(TipoEventoForm form);
 
-    TipoEvento updateEventType(Long id, AtualizacaoTipoEventoForm form) throws NoContentException;
+    @CacheEvict(value = "listEventTypes", allEntries = true)
+    TipoEvento updateEventType(Long id, AtualizacaoTipoEventoForm form);
 
-    void deleteEventType(Long id) throws DeleteEntityWithDependentsException, NoContentException;
+    @CacheEvict(value = "listEventTypes", allEntries = true)
+    void deleteEventType(Long id);
 
 }
