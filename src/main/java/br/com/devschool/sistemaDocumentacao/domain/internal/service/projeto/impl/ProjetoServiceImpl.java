@@ -1,5 +1,6 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.impl;
 
+import br.com.devschool.sistemaDocumentacao.domain.external.client.SeilaCliente;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
@@ -17,10 +18,12 @@ import java.util.Optional;
 public class ProjetoServiceImpl implements ProjetoService {
 
     private ProjetoRepository projetoRepository;
+    private SeilaCliente seilaCliente;
 
     @Autowired
-    public ProjetoServiceImpl(ProjetoRepository projetoRepository) {
+    public ProjetoServiceImpl(ProjetoRepository projetoRepository, SeilaCliente seilaCliente) {
         this.projetoRepository = projetoRepository;
+        this.seilaCliente = seilaCliente;
     }
 
     @Override
@@ -29,6 +32,8 @@ public class ProjetoServiceImpl implements ProjetoService {
         if(projects.isEmpty()) {
             throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
         }
+
+        System.out.println(seilaCliente.helloWorld());
         return projects;
     }
 

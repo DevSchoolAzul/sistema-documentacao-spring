@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   datasource:
     Driver: org.h2.Driver
@@ -12,6 +15,12 @@ spring:
       hibernate.format_sql: true
     hibernate:
       ddl-auto: update
+  application:
+    name: 'sistema-documentacao'
 
-
-
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
