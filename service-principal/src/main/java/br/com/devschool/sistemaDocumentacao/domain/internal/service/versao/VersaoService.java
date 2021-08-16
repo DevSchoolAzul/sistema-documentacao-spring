@@ -27,4 +27,6 @@ public interface VersaoService {
     @CacheEvict(value = "listVersions", allEntries = true)
     void deleteVersion(Long id) throws NoContentException, DeleteEntityWithDependentsException;
 
+	List<Versao> getVersionsByProjectId(Long projetoId);
+
 }

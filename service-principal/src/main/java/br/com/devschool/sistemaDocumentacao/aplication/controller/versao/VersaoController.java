@@ -1,15 +1,26 @@
 package br.com.devschool.sistemaDocumentacao.aplication.controller.versao;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.dto.VersaoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.AtualizacaoVersaoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.VersaoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.versao.VersaoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/versoes")
@@ -23,9 +34,15 @@ public class VersaoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VersaoDto>> getAllVersions() {
-        List<VersaoDto> versionsDto = VersaoDto.convertList(versaoService.getAllVersions());
-        return ResponseEntity.ok(versionsDto);
+    public ResponseEntity<List<VersaoDto>> getAllVersions(@RequestParam(required = false) Long projetoId) {
+    	List<Versao> versions;
+    	if (projetoId == null) {
+    		versions = versaoService.getAllVersions();
+    	} else {
+    		versions = versaoService.getVersionsByProjectId(projetoId);
+    	}
+    	
+        return ResponseEntity.ok(VersaoDto.convertList(versions));
     }
 
     @GetMapping("/{id}")

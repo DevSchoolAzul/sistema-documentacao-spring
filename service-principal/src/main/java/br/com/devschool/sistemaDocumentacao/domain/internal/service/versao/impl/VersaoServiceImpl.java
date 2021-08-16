@@ -75,4 +75,14 @@ public class VersaoServiceImpl implements VersaoService {
         }
         versaoRepository.deleteById(id);
     }
+
+
+	@Override
+	public List<Versao> getVersionsByProjectId(Long projetoId) {
+		List<Versao> versions = versaoRepository.findByProjetoId(projetoId);
+		if (versions.isEmpty()) {
+            throw new NoContentException("VersoService","getVersionsByProjectId", "projetoId: " + projetoId, "Nenhuma versão encontrada com esse id de projeto.");
+        }
+		return versions;
+	}
 }
