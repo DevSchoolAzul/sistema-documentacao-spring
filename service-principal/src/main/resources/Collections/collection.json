@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5ba3be83-0511-43bb-aa3e-6ae4e8cecc13",
+		"_postman_id": "5c3bd7af-0eb2-4adc-9bdd-b694f33a3054",
 		"name": "Sistema Documentacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -76,8 +76,150 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Pesquisar por um nome que não existe deve retornar 204",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/projetos?nome=fbafgljflhgklds",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"projetos"
+									],
+									"query": [
+										{
+											"key": "nome",
+											"value": "fbafgljflhgklds"
+										},
+										{
+											"key": "situacao",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
+				},
+				{
+					"name": "listando todos os projetos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listando projeto por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos?nome=referencia",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "referencia"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listando projeto por situacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos?situacao=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							],
+							"query": [
+								{
+									"key": "situacao",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listando projeto por nome e situacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos?nome=projeto&situacao=true",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "projeto"
+								},
+								{
+									"key": "situacao",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projetos/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/projetos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"projetos",
+								"2"
+							]
+						}
+					},
+					"response": []
 				},
 				{
 					"name": "/projetos",
@@ -102,43 +244,6 @@
 							"port": "8080",
 							"path": [
 								"projetos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/projetos",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/projetos",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"projetos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/projetos/{id}",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/projetos/2",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"projetos",
-								"2"
 							]
 						}
 					},
@@ -198,6 +303,35 @@
 			"name": "Versoes",
 			"item": [
 				{
+					"name": "chamadas que devem falhar",
+					"item": [
+						{
+							"name": "buscar versoes por id de projeto que não tem versao cadastrada deve retornar 204",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/versoes?projetoId=3",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"versoes"
+									],
+									"query": [
+										{
+											"key": "projetoId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "/versoes",
 					"request": {
 						"method": "POST",
@@ -238,6 +372,30 @@
 							"port": "8080",
 							"path": [
 								"versoes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar versoes por id de projeto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/versoes?projetoId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"versoes"
+							],
+							"query": [
+								{
+									"key": "projetoId",
+									"value": "1"
+								}
 							]
 						}
 					},
@@ -1385,7 +1543,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
