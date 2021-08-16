@@ -24,7 +24,10 @@ public interface ProjetoService {
     @CacheEvict(value = "listProjects", allEntries = true)
     Projeto updateProjectById(Long id, AtualizacaoProjetoForm form);
 
-
+    
     void deleteProject(Long id);
+
+    @Cacheable(value = "listProjects")
+	List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao);
 
 }

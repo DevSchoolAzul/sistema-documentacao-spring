@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.dto.ProjetoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
@@ -32,9 +34,14 @@ public class ProjetoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjetoDto>> getAllProjects() {
-        List<ProjetoDto> projects = ProjetoDto.convertList(projetoService.getAllProjects());
-        return ResponseEntity.ok(projects);
+    public ResponseEntity<List<ProjetoDto>> getAllProjects(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false) Boolean situacao) {
+    	List<Projeto> projects;
+    	if (!nome.isEmpty() || situacao != null) {
+        	projects = projetoService.getProjectsByNameAndSituation(nome, situacao);
+        } else {
+        	projects = projetoService.getAllProjects();        	
+        }
+        return ResponseEntity.ok(ProjetoDto.convertList(projects));
     }
 
     @GetMapping("/{id}")

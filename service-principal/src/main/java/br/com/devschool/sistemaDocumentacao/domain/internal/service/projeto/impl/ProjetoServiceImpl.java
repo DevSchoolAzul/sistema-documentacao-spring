@@ -1,5 +1,11 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.devschool.sistemaDocumentacao.domain.external.client.SeilaCliente;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
@@ -8,11 +14,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.Proj
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.projeto.ProjetoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProjetoServiceImpl implements ProjetoService {
@@ -33,7 +34,7 @@ public class ProjetoServiceImpl implements ProjetoService {
             throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
         }
 
-        System.out.println(seilaCliente.helloWorld());
+//        System.out.println(seilaCliente.helloWorld());
         return projects;
     }
 
@@ -74,4 +75,13 @@ public class ProjetoServiceImpl implements ProjetoService {
         }
         projetoRepository.deleteById(id);
     }
+
+	@Override
+	public List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao) {
+		List<Projeto> projects = projetoRepository.findByNomeContainsAndSituacao(nome, situacao);
+		if(projects.isEmpty()) {
+            throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
+        }
+		return projects;
+	}
 }
