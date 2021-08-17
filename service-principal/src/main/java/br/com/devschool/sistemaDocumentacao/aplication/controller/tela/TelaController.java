@@ -22,6 +22,8 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.Tela
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormCadastrarDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
+import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/telas")
@@ -36,8 +38,16 @@ public class TelaController {
 		if (telas.isEmpty()) {
 			throw new NoContentException("TelaController", "listar", "idVersao: " +idVersao, "Não foi encontrado telas para essa versão");
 		}
+
 		return ResponseEntity.ok(TelaDto.converter(telas));
 	}
+
+//	@GetMapping
+//	public ResponseEntity<List<Tela>> listarId(@RequestParam(required = false) Long idVersao) {
+//		List<Tela> telas = telaService.listarId(idVersao);
+//
+//		return ResponseEntity.ok(telas);
+//	}
 
 	@PostMapping
 	public ResponseEntity<TelaDto> novaTela(@RequestBody @Valid TelaFormCadastrarDto telaForm) {
@@ -65,4 +75,5 @@ public class TelaController {
 
 		return ResponseEntity.ok().build();
 	}
+
 }

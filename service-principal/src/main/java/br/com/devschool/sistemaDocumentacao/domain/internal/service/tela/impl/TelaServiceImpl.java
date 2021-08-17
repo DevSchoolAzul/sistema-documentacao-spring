@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEnti
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.versao.VersaoRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TelaServiceImpl implements TelaService {
@@ -25,8 +27,8 @@ public class TelaServiceImpl implements TelaService {
 
 	@Override
 	public List<Tela> listar(Long idVersao) {
-		if (idVersao != null) {
-			return telaRepository.findAllByVersaoId(idVersao);
+		if (idVersao != null){
+			return telaRepository.findByVersaoId(idVersao);
 		}
 		return telaRepository.findAll();
 	}
@@ -62,5 +64,7 @@ public class TelaServiceImpl implements TelaService {
 			throw new DeleteEntityWithDependentsException("TelaService", "deletar", "Id: "+ id, "Esta tela não pode ser excluida pois já possui eventos assiciadas a ela.");
 		telaRepository.delete(tela);
 	}
+
+
 
 }
