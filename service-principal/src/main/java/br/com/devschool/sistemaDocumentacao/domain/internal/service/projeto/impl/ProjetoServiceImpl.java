@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.devschool.sistemaDocumentacao.domain.external.client.SeilaCliente;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.Projeto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.AtualizacaoProjetoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.projeto.form.ProjetoForm;
@@ -19,12 +18,10 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.repository.projeto.P
 public class ProjetoServiceImpl implements ProjetoService {
 
     private ProjetoRepository projetoRepository;
-    private SeilaCliente seilaCliente;
 
     @Autowired
-    public ProjetoServiceImpl(ProjetoRepository projetoRepository, SeilaCliente seilaCliente) {
+    public ProjetoServiceImpl(ProjetoRepository projetoRepository) {
         this.projetoRepository = projetoRepository;
-        this.seilaCliente = seilaCliente;
     }
 
     @Override
@@ -34,7 +31,6 @@ public class ProjetoServiceImpl implements ProjetoService {
             throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
         }
 
-//        System.out.println(seilaCliente.helloWorld());
         return projects;
     }
 
