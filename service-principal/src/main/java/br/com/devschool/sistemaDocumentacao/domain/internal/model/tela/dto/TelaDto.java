@@ -28,7 +28,7 @@ public class TelaDto {
 	private LocalDate dataCadastro;
 	private String urlLog;
 	private Boolean situacao;
-	private long versaoId;
+	private Long versaoId;
 	private List <Tela> telasFilhas;
 	
 	public TelaDto(Tela tela) {

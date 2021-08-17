@@ -36,18 +36,11 @@ public class TelaController {
 	public ResponseEntity<List<TelaDto>> listar(@RequestParam(required = false) Long idVersao) {
 		List<Tela> telas = telaService.listar(idVersao);
 		if (telas.isEmpty()) {
-			throw new NoContentException("TelaController", "listar", "idVersao: " +idVersao, "Não foi encontrado telas para essa versão");
+			throw new NoContentException("TelaController", "listar", "idVersao: " + idVersao, "Não foi encontrado telas para essa versão");
 		}
 
 		return ResponseEntity.ok(TelaDto.converter(telas));
 	}
-
-//	@GetMapping
-//	public ResponseEntity<List<Tela>> listarId(@RequestParam(required = false) Long idVersao) {
-//		List<Tela> telas = telaService.listarId(idVersao);
-//
-//		return ResponseEntity.ok(telas);
-//	}
 
 	@PostMapping
 	public ResponseEntity<TelaDto> novaTela(@RequestBody @Valid TelaFormCadastrarDto telaForm) {
