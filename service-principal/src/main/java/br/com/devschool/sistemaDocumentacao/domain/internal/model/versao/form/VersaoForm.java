@@ -22,6 +22,8 @@ public class VersaoForm {
     private Integer ordem;
     private String numeroVersao;
     private Long projetoId;
+    
+    private Long versaoCloneId;
 
     public Versao convertFormToEntity(ProjetoRepository projetoRepository) {
         Projeto project = projetoRepository.findById(this.projetoId).get();

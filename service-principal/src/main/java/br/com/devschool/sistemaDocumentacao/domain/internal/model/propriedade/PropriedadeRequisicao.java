@@ -24,4 +24,13 @@ public class PropriedadeRequisicao {
     private String chave;
     private String valor;
     private Integer ordem;
+    
+	public static PropriedadeRequisicao clonar(PropriedadeRequisicao propriedade) {
+		return PropriedadeRequisicao.builder()
+				.requisicao(propriedade.getRequisicao())
+				.chave(propriedade.getChave())
+				.valor(propriedade.getValor())
+				.ordem(propriedade.getOrdem())
+				.build();
+	}
 }

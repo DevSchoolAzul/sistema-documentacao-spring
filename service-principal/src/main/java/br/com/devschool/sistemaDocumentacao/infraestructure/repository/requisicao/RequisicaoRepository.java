@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface RequisicaoRepository extends JpaRepository<Requisicao, Long> {
 
 	List<Requisicao> findByEventoId(Long idEvento);
+
+	List<Requisicao> findAllByEventoIdAndRequisicaoPaiIsNull(Long id);
 }

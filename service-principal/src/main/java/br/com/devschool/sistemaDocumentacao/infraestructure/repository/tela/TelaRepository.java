@@ -13,4 +13,6 @@ public interface TelaRepository extends JpaRepository<Tela, Long> {
 	List<Tela> findByVersaoId(Long idVersao);
 
 	List<Tela> findAllByVersaoId(Long idVersao);
+
+	List<Tela> findAllByVersaoIdAndTelaPaiIsNull(Long idVersao);
 }

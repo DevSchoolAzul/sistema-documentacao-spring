@@ -9,4 +9,5 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
 public interface VersaoRepository extends JpaRepository<Versao, Long> {
 	
 	List<Versao> findByProjetoId(Long idProjeto);
+
 }

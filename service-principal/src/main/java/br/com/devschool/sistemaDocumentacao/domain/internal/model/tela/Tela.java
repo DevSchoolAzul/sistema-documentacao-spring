@@ -42,5 +42,28 @@ public class Tela {
     @OneToMany(mappedBy = "telaPai", fetch = FetchType.LAZY)
     private List<Tela> telasFilhas;
 
+    public Tela(Tela tela) {
+    	this.versao = tela.getVersao();
+    	this.dataCadastro = tela.getDataCadastro();
+    	this.nomeTela = tela.getNomeTela();
+    	this.imagem = tela.getImagem();
+    	this.situacao = tela.getSituacao();
+    	this.ordem = tela.getOrdem();
+    	this.urlLog = tela.getUrlLog();
+    }
 
+	public static Tela clonar(Tela tela) {
+		return Tela.builder()
+			.versao(tela.getVersao())
+			.dataCadastro(tela.getDataCadastro())
+			.nomeTela(tela.getNomeTela())
+			.imagem(tela.getImagem())
+			.situacao(tela.getSituacao())
+			.ordem(tela.getOrdem())
+			.urlLog(tela.getUrlLog())
+			.versaoOrigem(tela.getVersao())
+			.telaPai(tela.getTelaPai())
+			.build();
+	}
+    
 }
