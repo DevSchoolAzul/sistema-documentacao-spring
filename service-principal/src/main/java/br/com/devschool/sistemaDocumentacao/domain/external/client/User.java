@@ -1,4 +1,4 @@
-package br.com.devschool.jwt.model;
+package br.com.devschool.sistemaDocumentacao.domain.external.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
