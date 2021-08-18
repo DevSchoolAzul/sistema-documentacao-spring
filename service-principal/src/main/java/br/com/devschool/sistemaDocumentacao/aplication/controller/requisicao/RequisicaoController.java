@@ -22,7 +22,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.for
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.requisicao.form.RequisicaoCadastrarForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.requisicao.RequisicaoService;
-import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 
 
 
@@ -36,10 +35,12 @@ public class RequisicaoController {
 	private EventoService eventoService;
 	
 	@GetMapping
-	public ResponseEntity<List<RequisicaoDto>> listar(@RequestParam(name = "idEvento", required = false) Long idEvento) {
-		List<Requisicao> requisicoes = requisicaoService.listar(idEvento);
-		if (requisicoes.isEmpty()) {
-			throw new NoContentException(this.getClass().getName(), "listar", "idEvento:" + idEvento, "Nenhuma requisicao cadastrada para este evento.");
+	public ResponseEntity<List<RequisicaoDto>> listar(@RequestParam(required = false) Long idEvento) {
+		List<Requisicao> requisicoes;
+		if (idEvento == null) {
+			requisicoes = requisicaoService.listar();
+		} else {
+			requisicoes = requisicaoService.listarPorEvento(idEvento);
 		}
 		return ResponseEntity.ok(RequisicaoDto.converter(requisicoes));
 	}

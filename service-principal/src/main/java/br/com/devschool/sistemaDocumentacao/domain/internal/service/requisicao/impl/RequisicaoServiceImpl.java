@@ -22,15 +22,24 @@ public class RequisicaoServiceImpl implements RequisicaoService {
 	@Autowired
 	private EventoService eventoService;
 	
-	public Requisicao cadastrar(Requisicao requisicao) {
-		return requisicaoRepository.save(requisicao);
+	public List<Requisicao> listar() {
+		List<Requisicao> requisicoes = requisicaoRepository.findAll();
+		if (requisicoes.isEmpty()) {
+			throw new NoContentException("RequisicaoService","listar", "none", "Não há requisições cadastradas");
+		}
+		return requisicoes;
 	}
 	
-	public List<Requisicao> listar(Long idEvento) {
-		if (idEvento == null) {
-			return requisicaoRepository.findAll();
+	public List<Requisicao> listarPorEvento(Long idEvento) {
+		List<Requisicao> requisicoes = requisicaoRepository.findAllByEventoId(idEvento);
+		if (requisicoes.isEmpty()) {
+			throw new NoContentException("RequisicaoService","listarPorEvento","idEvento:" + idEvento, "Nenhuma requisicao encontrada para esse evento");
 		}
-		return requisicaoRepository.findByEventoId(idEvento);
+		return requisicoes;
+	}
+	
+	public Requisicao cadastrar(Requisicao requisicao) {
+		return requisicaoRepository.save(requisicao);
 	}
 	
 	public Requisicao buscar(Long id) {

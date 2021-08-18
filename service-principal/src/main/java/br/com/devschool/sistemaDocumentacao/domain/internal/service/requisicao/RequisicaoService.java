@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.Cacheable;
 
 public interface RequisicaoService {
 	@Cacheable(value = "listRequisition")
-	List<Requisicao> listar(Long idEvento);
+	List<Requisicao> listar();
 
 	@CacheEvict(value = "listRequisition", allEntries = true)
 	Requisicao cadastrar(Requisicao requisicao);
@@ -22,4 +22,6 @@ public interface RequisicaoService {
 
 	@CacheEvict(value = "listRequisition", allEntries = true)
 	void excluir(Long id);
+	
+	List<Requisicao> listarPorEvento(Long idEvento);
 }
