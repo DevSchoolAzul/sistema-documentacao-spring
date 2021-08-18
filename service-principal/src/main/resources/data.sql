@@ -152,7 +152,8 @@ VALUES
 (true, 1, 'Evento de "Tela com filhos e com eventos cadastrados"', 1, 1),
 (true, 2, 'Evento de "Tela filha sem filho com eventos cadastrados"', 2, 1),
 (true, 2, 'Evento com requisicao', 1, 1),
-(true, 3, 'Evento sem requisicao', 1, 1)
+(true, 3, 'Evento sem requisicao', 1, 1),
+(true, 4, 'Outro evento com requisicao', 1, 1)
 ;
 
 INSERT INTO REQUISICOES
@@ -166,7 +167,9 @@ VALUES
 ('camada 2', 'Requisicao com filha', 2 ,'urlHomolog2.com',
 3, null, 'uriProd.com', true),
 ('camada 2', 'Requisicao sem filha', 2 ,'urlHomolog2.com',
-3, 1, 'uriProd.com', true)
+3, 1, 'uriProd.com', true),
+('camada 2', 'Requisicao sem filha', 2 ,'urlHomolog2.com',
+5, 1, 'uriProd.com', true)
 ;
 
 INSERT INTO PROPRIEDADES
