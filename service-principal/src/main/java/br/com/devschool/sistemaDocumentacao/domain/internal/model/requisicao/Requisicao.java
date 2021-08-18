@@ -45,5 +45,17 @@ public class Requisicao {
     private List<PropriedadeRequisicao> propriedades;
     @OneToMany(mappedBy = "requisicaoPai", fetch = FetchType.LAZY)
     private List<Requisicao> requisicao;
+    
+	public static Requisicao clonar(Requisicao requisicaoOriginal) {
+		return Requisicao.builder()
+				.urlHomolog(requisicaoOriginal.getUrlHomolog())
+				.uriProd(requisicaoOriginal.getUriProd())
+				.descricao(requisicaoOriginal.getDescricao())
+				.camada(requisicaoOriginal.getCamada())
+				.situacao(requisicaoOriginal.getSituacao())
+				.ordem(requisicaoOriginal.getOrdem())
+				.requisicaoPai(requisicaoOriginal.getRequisicaoPai())
+				.build();
+	}
 
 }

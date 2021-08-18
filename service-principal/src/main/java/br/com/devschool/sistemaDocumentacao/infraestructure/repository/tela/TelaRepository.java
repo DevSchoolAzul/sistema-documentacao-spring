@@ -9,4 +9,6 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 public interface TelaRepository extends JpaRepository<Tela, Long> {
 
 	List<Tela> findAllByVersaoId(Long idVersao);
+
+	List<Tela> findAllByVersaoIdAndTelaPaiIsNull(Long idVersao);
 }

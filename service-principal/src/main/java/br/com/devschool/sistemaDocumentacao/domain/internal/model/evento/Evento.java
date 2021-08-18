@@ -32,4 +32,13 @@ public class Evento {
     private TipoEvento tipoEvento;
     @OneToMany(mappedBy = "evento")
     private List<Requisicao> requisicoes;
+	public static Evento clonar(Evento evento) {
+		return Evento.builder()
+				.situacao(evento.getSituacao())
+				.ordem(evento.getOrdem())
+				.parametros(evento.getParametros())
+				.tela(evento.getTela())
+				.tipoEvento(evento.getTipoEvento())
+				.build();
+	}
 }

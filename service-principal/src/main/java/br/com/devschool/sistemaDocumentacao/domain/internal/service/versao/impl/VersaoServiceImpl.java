@@ -1,25 +1,33 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.versao.impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.AtualizacaoVersaoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.form.VersaoForm;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.clone.CloneService;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.versao.VersaoService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.projeto.ProjetoRepository;
+import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.versao.VersaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VersaoServiceImpl implements VersaoService {
 
     private VersaoRepository versaoRepository;
     private ProjetoRepository projetoRepository;
-
+    @Autowired
+    private TelaRepository telaRepository;
+    @Autowired
+    private CloneService cloneService;
+    
     @Autowired
     public VersaoServiceImpl(VersaoRepository versaoRepository, ProjetoRepository projetoRepository) {
         this.versaoRepository = versaoRepository;
@@ -52,7 +60,12 @@ public class VersaoServiceImpl implements VersaoService {
     @Override
     public Versao createVersion(VersaoForm form) {
         Versao version = form.convertFormToEntity(projetoRepository);
-        return versaoRepository.save(version);
+        Versao originalVersion = this.getVersionById(form.getVersaoCloneId());
+        Versao createdVersion = versaoRepository.save(version);
+        if (form.getVersaoCloneId() != null) {
+        	cloneService.clonar(originalVersion, version);
+        }
+        return createdVersion;
     }
 
     @Override
