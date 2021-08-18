@@ -7,6 +7,7 @@ import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.Tela
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormCadastrarDto;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface TelaService {
     @Cacheable(value = "listTelas")
@@ -23,4 +24,5 @@ public interface TelaService {
 
     @CacheEvict(value = "listTelas", allEntries = true)
     void deletar(Long id);
+
 }

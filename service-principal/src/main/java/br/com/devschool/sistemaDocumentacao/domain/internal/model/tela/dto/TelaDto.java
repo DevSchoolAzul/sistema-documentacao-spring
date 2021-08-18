@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
+import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,6 +28,8 @@ public class TelaDto {
 	private LocalDate dataCadastro;
 	private String urlLog;
 	private Boolean situacao;
+	private Long versaoId;
+	private List <Tela> telasFilhas;
 	
 	public TelaDto(Tela tela) {
 		this.id = tela.getId();
@@ -36,6 +40,7 @@ public class TelaDto {
 		this.dataCadastro = tela.getDataCadastro();
 		this.urlLog = tela.getUrlLog();
 		this.situacao = tela.getSituacao();
+		this.versaoId = tela.getVersao().getId();
 	}
 
 	public static List<TelaDto> converter(List<Tela> telas) {
@@ -53,6 +58,7 @@ public class TelaDto {
 				.dataCadastro(tela.getDataCadastro())
 				.urlLog(tela.getUrlLog())
 				.situacao(tela.getSituacao())
+				.versaoId(tela.getVersao().getId())
 				.build();
 	}
 

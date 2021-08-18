@@ -3,14 +3,7 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.model.tela;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.versao.Versao;
@@ -35,6 +28,7 @@ public class Tela {
     private Versao versao;
     private LocalDate dataCadastro;
     private String nomeTela;
+    @Lob
     private String imagem;
     private Boolean situacao;
     @ManyToOne(fetch = FetchType.LAZY)
