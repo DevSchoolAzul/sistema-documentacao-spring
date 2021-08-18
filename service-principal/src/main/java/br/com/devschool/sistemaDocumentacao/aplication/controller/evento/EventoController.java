@@ -1,15 +1,26 @@
 package br.com.devschool.sistemaDocumentacao.aplication.controller.evento;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.dto.EventoDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.AtualizacaoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.EventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.EventoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/eventos")
@@ -23,9 +34,14 @@ public class EventoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<EventoDto>> getAllEvents() {
-        List<EventoDto> eventsDto = EventoDto.convertList(eventoService.getAllEvents());
-        return ResponseEntity.ok(eventsDto);
+    public ResponseEntity<List<EventoDto>> getAllEvents(@RequestParam(required = false) Long idTela) {
+        List<Evento> events;
+        if (idTela == null) {
+        	events = eventoService.getAllEvents();
+        } else {
+        	events = eventoService.getEventByTela(idTela);
+        }
+        return ResponseEntity.ok(EventoDto.convertList(events));
     }
 
     @GetMapping("/{id}")

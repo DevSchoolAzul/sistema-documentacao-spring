@@ -79,4 +79,13 @@ public class EventoServiceImpl implements EventoService {
         }
 
     }
+
+	@Override
+	public List<Evento> getEventByTela(Long idTela) {
+		List<Evento> events = eventoRepository.findAllByTelaId(idTela);
+		if(events.isEmpty()) {
+            throw new NoContentException("EventoService","getEventByTela","idTela: " + idTela, "Nenhum evento cadastrado na tela de id: " + idTela);
+        }
+		return events;
+	}
 }
