@@ -25,4 +25,6 @@ public interface TipoEventoService {
     @CacheEvict(value = "listEventTypes", allEntries = true)
     void deleteEventType(Long id);
 
+	List<TipoEvento> getTypeEventsByNameAndSituation(String nome, Boolean situacao);
+
 }

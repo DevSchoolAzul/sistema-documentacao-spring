@@ -66,4 +66,14 @@ public class TipoEventoServiceImpl implements TipoEventoService {
         }
         tipoEventoRepository.deleteById(id);
     }
+
+
+	@Override
+	public List<TipoEvento> getTypeEventsByNameAndSituation(String nome, Boolean situacao) {
+		List<TipoEvento> eventTypes = tipoEventoRepository.findAllByNomeAndSituacao(nome, situacao);
+		if (eventTypes.isEmpty()) {
+			throw new NoContentException("EventoService","updateEvent","nome: " + nome + ", situacao: " + situacao,"Nenhum tipo de evento cadastrado com nome: " + nome + " e Situação: " + situacao);
+		}
+		return eventTypes;
+	}
 }

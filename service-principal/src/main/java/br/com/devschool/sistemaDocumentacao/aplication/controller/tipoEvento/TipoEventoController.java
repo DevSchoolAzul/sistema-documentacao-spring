@@ -27,9 +27,14 @@ public class TipoEventoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TipoEventoDto>> getAllEventTypes() {
-        List<TipoEventoDto> eventTypesDto = TipoEventoDto.convertList(tipoEventoService.getAllEventTypes());
-        return ResponseEntity.ok(eventTypesDto);
+    public ResponseEntity<List<TipoEventoDto>> getAllEventTypes(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false) Boolean situacao) {
+        List<TipoEvento> eventTypes;
+        if (!nome.isBlank() || situacao != null) {
+        	eventTypes = tipoEventoService.getTypeEventsByNameAndSituation(nome, situacao);
+        } else {
+        	eventTypes = tipoEventoService.getAllEventTypes();
+        }
+        return ResponseEntity.ok(TipoEventoDto.convertList(eventTypes));
     }
 
     @GetMapping("{id}")

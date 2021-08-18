@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5c3bd7af-0eb2-4adc-9bdd-b694f33a3054",
+		"_postman_id": "c0a45f44-24d0-423e-8d61-75856e9c0ebc",
 		"name": "Sistema Documentacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -884,6 +884,77 @@
 							"path": [
 								"telas",
 								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TipoEventos",
+			"item": [
+				{
+					"name": "Buscar todos os tipos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tiposEvento",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tiposEvento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tipo de evento por nome",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tiposEvento?nome=sem",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tiposEvento"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "sem"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tipo de evento por situacao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/tiposEvento?situacao=false",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tiposEvento"
+							],
+							"query": [
+								{
+									"key": "situacao",
+									"value": "false"
+								}
 							]
 						}
 					},
