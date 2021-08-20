@@ -984,6 +984,30 @@
 					"response": []
 				},
 				{
+					"name": "buscar eventos por tela",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/eventos?idTela=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eventos"
+							],
+							"query": [
+								{
+									"key": "idTela",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/eventos",
 					"request": {
 						"method": "POST",
@@ -1249,7 +1273,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/requisicoes?idEvento=1",
+							"raw": "localhost:8080/requisicoes?idEvento=3",
 							"host": [
 								"localhost"
 							],
@@ -1260,7 +1284,7 @@
 							"query": [
 								{
 									"key": "idEvento",
-									"value": "1"
+									"value": "3"
 								}
 							]
 						}
@@ -1397,8 +1421,33 @@
 			"name": "Propriedade de Requisicao",
 			"item": [
 				{
-					"name": "A implementar",
+					"name": "chamadas que devem falhar",
 					"item": [
+						{
+							"name": "Buscar por uma propriedade que não existe deve retornar codigo 204",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/propriedades?requisicaoId=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"propriedades"
+									],
+									"query": [
+										{
+											"key": "requisicaoId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Listar propriedades de uma requisição que não existe",
 							"request": {
@@ -1425,7 +1474,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/propriedades?requisicaoId=2",
+									"raw": "http://localhost:8080/propriedades?requisicaoId=999",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1437,37 +1486,7 @@
 									"query": [
 										{
 											"key": "requisicaoId",
-											"value": "2"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "chamadas que devem falhar",
-					"item": [
-						{
-							"name": "Buscar por uma propriedade que não existe deve retornar codigo 204",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/propriedades?requisicaoId=2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"propriedades"
-									],
-									"query": [
-										{
-											"key": "requisicaoId",
-											"value": "2"
+											"value": "999"
 										}
 									]
 								}
@@ -1610,12 +1629,37 @@
 					]
 				},
 				{
-					"name": "Listar propriedades",
+					"name": "Listar todas as propriedades",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "localhost:8080/propriedades",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"propriedades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar propriedades de uma requisicao",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/propriedades",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"propriedades"
+							]
 						}
 					},
 					"response": []
@@ -1633,7 +1677,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"requisicaoId\": 1,\n    \"chave\": \"Circut Break\",\n    \"valor\": \"false\",\n    \"ordem\": \"3\"\n}"
+							"raw": "{\n    \"requisicaoId\": 2,\n    \"chave\": \"Circut Break\",\n    \"valor\": \"false\",\n    \"ordem\": \"3\"\n}"
 						},
 						"url": {
 							"raw": "localhost:8080/propriedades",
