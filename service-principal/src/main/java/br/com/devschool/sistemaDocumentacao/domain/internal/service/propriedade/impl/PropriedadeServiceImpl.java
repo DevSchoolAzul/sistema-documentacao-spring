@@ -28,8 +28,17 @@ public class PropriedadeServiceImpl implements PropriedadeService {
     }
 
     @Override
-    public List<PropriedadeRequisicao> getAllProperties() {
-        return propriedadeRequisicaoRepository.findAll();
+    public List<PropriedadeRequisicao> getAllProperties(Long requisicaoId) {
+        List<PropriedadeRequisicao> propriedades;
+    	if (requisicaoId != null) {
+        	propriedades = propriedadeRequisicaoRepository.findAllByRequisicaoId(requisicaoId);
+        } else {
+        	propriedades = propriedadeRequisicaoRepository.findAll();
+        }
+    	if (propriedades.isEmpty()) {
+    		throw new NoContentException("PropriedadeRequisicao", "GetAllProjects", "idRequisicao: " + requisicaoId, "Não foi encontrada Propriedades de Requisição");
+    	}
+    	return propriedades;
     }
 
     @Override
