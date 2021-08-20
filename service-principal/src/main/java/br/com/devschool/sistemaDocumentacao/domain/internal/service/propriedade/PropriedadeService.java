@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PropriedadeService {
     @Cacheable(value = "listProperties")
-    List<PropriedadeRequisicao> getAllProperties();
+    List<PropriedadeRequisicao> getAllProperties(Long requisicaoId);
 
     @CacheEvict(value = "listProperties", allEntries = true)
     PropriedadeRequisicao getPropertieById(Long id);
