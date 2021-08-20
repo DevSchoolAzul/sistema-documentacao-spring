@@ -1,5 +1,7 @@
 package br.com.devschool.sistemaDocumentacao.aplication.errorHandler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,8 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentE
 
 @RestControllerAdvice
 public class ErrorHandler {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ErrorHandler.class);
 	
 	@Autowired
 	private LogBancoService logBancoService;

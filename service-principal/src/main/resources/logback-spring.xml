@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProfile name="dev"/>
+	
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+	    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+	      <driverClass>org.h2.Driver</driverClass>
+	      <url>jdbc:h2:mem:sistema-documentacao-dev</url>
+	      <user>sa</user>
+	      <password></password>
+	    </connectionSource>
+    </appender>
+    
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+    <logger name="br.com.devschool.sistemaDocumentacao.aplication" level="INFO">
+        <appender-ref ref="DB" />
+        <appender-ref ref="CONSOLE" />
+    </logger>
+</configuration>

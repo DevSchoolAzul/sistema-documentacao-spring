@@ -3,6 +3,8 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.service.projeto.imp
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.repository.projeto.P
 @Service
 public class ProjetoServiceImpl implements ProjetoService {
 
+	private static final Logger logger = LoggerFactory.getLogger(ProjetoServiceImpl.class);
+	
     private ProjetoRepository projetoRepository;
 
     @Autowired
@@ -24,15 +28,18 @@ public class ProjetoServiceImpl implements ProjetoService {
         this.projetoRepository = projetoRepository;
     }
 
-    @Override
-    public List<Projeto> getAllProjects(){
-        List<Projeto> projects= projetoRepository.findAll();
-        if(projects.isEmpty()) {
-            throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
-        }
-
-        return projects;
-    }
+//    @Override
+//    public List<Projeto> getAllProjects(){
+//        List<Projeto> projects= projetoRepository.findAll();
+//        if(projects.isEmpty()) {
+//        	NoContentException exception = new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
+//        	logger.info("Nenhum Projeto encontrado", exception);
+//        	throw exception;
+//        }
+//
+//        return projects;
+//    	return projetoRepository.findAll();
+//    }
 
     @Override
     public Projeto getProjectById(Long id){
@@ -72,11 +79,21 @@ public class ProjetoServiceImpl implements ProjetoService {
         projetoRepository.deleteById(id);
     }
 
+//	@Override
+//	public List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao) {
+//		logger.info("buscando projetos por nome e parametro");
+//		List<Projeto> projects = projetoRepository.findByNomeContainsAndSituacao(nome, situacao);
+//		return projects;
+//		return projetoRepository.findByNomeContainsAndSituacao(nome, situacao);
+//	}
+
 	@Override
-	public List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao) {
-		List<Projeto> projects = projetoRepository.findByNomeContainsAndSituacao(nome, situacao);
-		if(projects.isEmpty()) {
-            throw new NoContentException("ProjetoService", "getAllProjects", "none","Nenhum projeto encontrado");
+	public List<Projeto> getProjects(String nome, Boolean situacao) {
+		List<Projeto> projects;
+		if (!nome.isEmpty() || situacao != null) {
+        	projects = projetoRepository.findByNomeContainsAndSituacao(nome, situacao);
+        } else {
+        	projects = projetoRepository.findAll();        	
         }
 		return projects;
 	}
