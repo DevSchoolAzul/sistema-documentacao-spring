@@ -28,8 +28,6 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentE
 @RestController
 @RequestMapping("/projetos")
 public class ProjetoController {
-
-	private static final Logger logger = LoggerFactory.getLogger(ProjetoController.class);
 	
     private ProjetoService projetoService;
 
@@ -40,15 +38,13 @@ public class ProjetoController {
 
     @GetMapping
     public ResponseEntity<List<ProjetoDto>> getAllProjects(@RequestParam(required = false, defaultValue = "") String nome, @RequestParam(required = false) Boolean situacao) {
-    	List<Projeto> projects = projetoService.getProjects(nome, situacao);
+    	List<Projeto> projects;
+    	if (!nome.isEmpty() || situacao != null) {
+        	projects = projetoService.getProjectsByNameAndSituation(nome, situacao);
+        } else {
+        	projects = projetoService.getAllProjects();        	
+        }
     	
-    	if (projects.isEmpty()) {
-    		RuntimeException exception = new NoContentException("","","", "Nenhum projeto encontrado");
-    		logger.info(exception.getMessage(), exception);
-    		throw exception;
-    	}
-    	
-    	logger.info("Requisicao para listar projetos. [nome = {}, situacao = {}]", nome, situacao);
         return ResponseEntity.ok(ProjetoDto.convertList(projects));
     }
 
@@ -56,7 +52,6 @@ public class ProjetoController {
     public ResponseEntity<ProjetoDto>  getProjectById(@PathVariable Long id) {
         ProjetoDto projectDto = new ProjetoDto(projetoService.getProjectById(id));
         
-        logger.info("Requisicao para buscar um projeto pelo id. [id = {}]", id);
         return ResponseEntity.ok(projectDto);
     }
 
@@ -64,7 +59,6 @@ public class ProjetoController {
     public ResponseEntity<ProjetoDto> createProject(@Valid @RequestBody ProjetoForm form) {
         ProjetoDto projectDto = new ProjetoDto(projetoService.createProject(form));
         
-        logger.info("Requisicao para criar um novo projeto. [Valores = {}]", form);
         return ResponseEntity.ok(projectDto);
     }
 
@@ -72,7 +66,6 @@ public class ProjetoController {
     public ResponseEntity<ProjetoDto> updateProject(@PathVariable Long id,@Valid @RequestBody AtualizacaoProjetoForm form)  {
         ProjetoDto projetoDto = new ProjetoDto(projetoService.updateProjectById(id, form));
         
-        logger.info("Requisicao para atualizar um projeto. [id do projeto = {}, novos valores = {}]", id, form);
         return ResponseEntity.ok(projetoDto);
     }
 
@@ -80,7 +73,6 @@ public class ProjetoController {
     public ResponseEntity deleteProject(@PathVariable Long id) {
         projetoService.deleteProject(id);
         
-        logger.info("Requisição para deletar um projeto. [id = {}]", id);
         return ResponseEntity.ok().build();
     }
 

@@ -40,7 +40,7 @@ public class TelaFormCadastrarDto {
 
 	public Tela toTela(TelaRepository telaRepository, VersaoRepository versaoRepository){
 		Optional<Versao> versao = versaoRepository.findById(this.versao);
-		if (versao.isEmpty()) throw new NoContentException("TelaFormCadastrarDto", "toTela", this.toString(), "Não foi encontrada Versão com essa id");
+		if (versao.isEmpty()) throw new NoContentException("Não foi encontrada Versão com essa id");
 		
 		Tela tela = Tela.builder()
 				.versao(versao.get())

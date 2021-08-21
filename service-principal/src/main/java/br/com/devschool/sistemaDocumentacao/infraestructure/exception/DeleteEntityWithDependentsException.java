@@ -5,16 +5,9 @@ import lombok.Getter;
 @Getter
 public class DeleteEntityWithDependentsException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
-
-	private String entidade;
-	private String metodo;
-	private String parametros;
 	
-	public DeleteEntityWithDependentsException(String entidade, String metodo, String parametros, String message) {
+	public DeleteEntityWithDependentsException(String message) {
 		super(message);
-		this.entidade = entidade;
-		this.metodo = metodo;
-		this.parametros = parametros;
 	}
 
 }

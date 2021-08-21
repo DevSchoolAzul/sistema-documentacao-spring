@@ -3,19 +3,17 @@ package br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.impl;
 import java.util.List;
 import java.util.Optional;
 
-import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.Tela;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormAtualizarDto;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.tela.form.TelaFormCadastrarDto;
+import br.com.devschool.sistemaDocumentacao.domain.internal.service.tela.TelaService;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.DeleteEntityWithDependentsException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentException;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.versao.VersaoRepository;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TelaServiceImpl implements TelaService {
@@ -45,7 +43,7 @@ public class TelaServiceImpl implements TelaService {
 		if (optional.isPresent()) {
 			return optional.get();
 		}
-		throw new NoContentException("Tela Service", "buscar", "Id: "+ id, "nenhuma tela cadastrada com id " + id);
+		throw new NoContentException("nenhuma tela cadastrada com id " + id);
 	}
 
 	@Override
@@ -59,9 +57,9 @@ public class TelaServiceImpl implements TelaService {
 	public void deletar(Long id) {
 		Tela tela = this.buscar(id);
 		if (tela.getTelasFilhas().size() > 0)  
-			throw new DeleteEntityWithDependentsException("TelaService", "deletar", "Id: "+ id, "Esta tela não pode ser excluida pois já possui telas assiciadas a ela.");
+			throw new DeleteEntityWithDependentsException("Esta tela não pode ser excluida pois já possui telas assiciadas a ela.");
 		if (tela.getEventos().size() > 0)
-			throw new DeleteEntityWithDependentsException("TelaService", "deletar", "Id: "+ id, "Esta tela não pode ser excluida pois já possui eventos assiciadas a ela.");
+			throw new DeleteEntityWithDependentsException("Esta tela não pode ser excluida pois já possui eventos assiciadas a ela.");
 		telaRepository.delete(tela);
 	}
 

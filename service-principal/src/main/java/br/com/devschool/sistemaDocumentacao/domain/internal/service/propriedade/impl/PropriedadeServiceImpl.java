@@ -36,7 +36,7 @@ public class PropriedadeServiceImpl implements PropriedadeService {
         	propriedades = propriedadeRequisicaoRepository.findAll();
         }
     	if (propriedades.isEmpty()) {
-    		throw new NoContentException("PropriedadeRequisicao", "GetAllProjects", "idRequisicao: " + requisicaoId, "Não foi encontrada Propriedades de Requisição");
+    		throw new NoContentException("Não foi encontrada Propriedades de Requisição");
     	}
     	return propriedades;
     }
@@ -45,7 +45,7 @@ public class PropriedadeServiceImpl implements PropriedadeService {
     public PropriedadeRequisicao getPropertieById(Long id) throws NoContentException {
         Optional<PropriedadeRequisicao> optionalPropertie = propriedadeRequisicaoRepository.findById(id);
         if(optionalPropertie.isEmpty()) {
-            throw new NoContentException(this.getClass().getName(), "getPropertieById", "Id: " + id, "Não foi encontrado Propriedades com esse ID.");
+            throw new NoContentException("Não foi encontrado Propriedades com esse ID.");
         }
         return optionalPropertie.get();
     }
@@ -60,7 +60,7 @@ public class PropriedadeServiceImpl implements PropriedadeService {
     public PropriedadeRequisicao updatePropertie(@PathVariable Long id, AtualizacaoPropriedaddeRequisicaoForm form) throws NoContentException {
         Optional<PropriedadeRequisicao> optionalPropertie = propriedadeRequisicaoRepository.findById(id);
         if(optionalPropertie.isEmpty()) {
-            throw new NoContentException(this.getClass().getName(), "updatePropertie", "Id: " + id + " atributos: " + form, "Não foi encontrado Propriedades com esse ID.");
+            throw new NoContentException("Não foi encontrado Propriedades com esse ID.");
         }
         PropriedadeRequisicao propertie = form.updateEntity(optionalPropertie.get());
         return propriedadeRequisicaoRepository.save(propertie);

@@ -1,5 +1,11 @@
 package br.com.devschool.sistemaDocumentacao.domain.internal.service.evento.impl;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.Evento;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.AtualizacaoEventoForm;
 import br.com.devschool.sistemaDocumentacao.domain.internal.model.evento.form.EventoForm;
@@ -9,11 +15,6 @@ import br.com.devschool.sistemaDocumentacao.infraestructure.exception.NoContentE
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.evento.EventoRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tela.TelaRepository;
 import br.com.devschool.sistemaDocumentacao.infraestructure.repository.tipoEvento.TipoEventoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EventoServiceImpl implements EventoService {
@@ -34,7 +35,7 @@ public class EventoServiceImpl implements EventoService {
         List<Evento> events = eventoRepository.findAll();
 
         if(events.isEmpty()) {
-            throw new NoContentException("EventoService","getAllEvents","none", "Nenhum evento encontrado");
+            throw new NoContentException("Nenhum evento encontrado");
         }
 
         return events;
@@ -45,7 +46,7 @@ public class EventoServiceImpl implements EventoService {
         Optional<Evento> optionalEvent = eventoRepository.findById(id);
 
         if(optionalEvent.isEmpty()) {
-            throw new NoContentException("EventoService","getEventById","ID: " + id, "Nenhum evento cadastrado com ID " + id);
+            throw new NoContentException("Nenhum evento cadastrado com ID " + id);
         }
 
         return optionalEvent.get();
@@ -62,7 +63,7 @@ public class EventoServiceImpl implements EventoService {
         Optional<Evento> optionalEvent = eventoRepository.findById(id);
 
         if(optionalEvent.isEmpty()) {
-            throw new NoContentException("EventoService","updateEvent","ID: " + id, "Nenhum evento cadastrado com ID " + id);
+            throw new NoContentException("Nenhum evento cadastrado com ID " + id);
         }
 
         Evento event = form.updateEntity(optionalEvent.get());
@@ -75,7 +76,7 @@ public class EventoServiceImpl implements EventoService {
         Evento event = this.getEventById(id);
 
         if (!event.getRequisicoes().isEmpty()) {
-            throw new DeleteEntityWithDependentsException("EventoService","deleteEvent","ID: " + id,"Esse Evento não pode ser excluído pois já possui requisição cadastrada.");
+            throw new DeleteEntityWithDependentsException("Esse Evento não pode ser excluído pois já possui requisição cadastrada.");
         }
 
     }
@@ -84,7 +85,7 @@ public class EventoServiceImpl implements EventoService {
 	public List<Evento> getEventByTela(Long idTela) {
 		List<Evento> events = eventoRepository.findAllByTelaId(idTela);
 		if(events.isEmpty()) {
-            throw new NoContentException("EventoService","getEventByTela","idTela: " + idTela, "Nenhum evento cadastrado na tela de id: " + idTela);
+            throw new NoContentException("Nenhum evento cadastrado na tela de id: " + idTela);
         }
 		return events;
 	}

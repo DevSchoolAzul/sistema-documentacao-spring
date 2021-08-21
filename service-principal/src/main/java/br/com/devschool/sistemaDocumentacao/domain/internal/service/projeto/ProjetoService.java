@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface ProjetoService {
 
-//    @Cacheable(value = "listProjects")
-//    List<Projeto> getAllProjects();
+    @Cacheable(value = "listProjects")
+    List<Projeto> getAllProjects();
 
     @CacheEvict(value = "listProjects", allEntries = true)
     Projeto getProjectById(Long id);
@@ -27,10 +27,8 @@ public interface ProjetoService {
     
     void deleteProject(Long id);
 
-//    @Cacheable(value = "listProjects")
-//	List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao);
+    @Cacheable(value = "listProjects")
+	List<Projeto> getProjectsByNameAndSituation(String nome, Boolean situacao);
 
-    @Cacheable("listProjects")
-	List<Projeto> getProjects(String nome, Boolean situacao);
 
 }
